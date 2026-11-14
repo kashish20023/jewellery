@@ -100,3 +100,4 @@ During Phases 1 through 5, all missing client dependencies will be handled using
 2. **Labelled Synthetic Data**: All fixtures clearly marked as `[SYNTHETIC TEST FIXTURE]`.
 3. **No Real PII**: No customer names, phone numbers, or addresses from real persons.
 4. **Environment Isolation**: A `.env.example` file documenting all variable placeholders without sensitive values.
+

@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-11-14T14:40:00+05:30  
 **Current Phase**: Phase 0 — Discovery and Implementation Contract  
-**Active Worktree**: `/Users/ideaind/.gemini/antigravity/scratch/premium-jewellery` (branch: `main`)  
+**Active Worktree**: `/Users/ideaind/Desktop/premium-jewellery` (branch: `main`)  
 **Git Head**: Initialized repository
 
 ---
@@ -107,3 +107,4 @@
 ## 5. Next Steps
 - Await client review of Phase 0 discovery documents.
 - Execute **PHASE 1**: Application foundation, TypeScript/Next.js/Tailwind setup, PostgreSQL Prisma schema, deterministic test fixtures with boundary prices (9,999,900; 10,000,000; 10,000,100 paise), safe DTOs, health checks, and unit test runner.
+

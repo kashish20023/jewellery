@@ -517,3 +517,4 @@ stateDiagram-v2
 - **Phase 5**: Guest cart, atomic inventory reservations, hosted payment adapter (Razorpay sandbox), durable webhook processing, guest capability order tracking.
 - **Phase 6**: SEO/Schema.org, analytics without PII, image optimization, full smoke matrix execution (S01–S30).
 - **Phase 7**: Production readiness, client UAT, backup/restore rehearsal, deployment runbook.
+

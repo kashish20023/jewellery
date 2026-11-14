@@ -3,7 +3,7 @@
 ## Repository Overview
 - **Project**: Premium Jewellery Domestic Indian Storefront (English / INR)
 - **Status**: Phase 0 — Discovery and Implementation Contract Complete
-- **Root Directory**: `/Users/ideaind/.gemini/antigravity/scratch/premium-jewellery`
+- **Root Directory**: `/Users/ideaind/Desktop/premium-jewellery`
 - **Target Stack**: TypeScript, Next.js (App Router), React, Tailwind CSS, PostgreSQL (Prisma ORM), Vitest, Playwright.
 
 ## Core Directives & Boundaries
@@ -26,3 +26,4 @@
    - Never implement ahead of the current phase prompt.
    - Maintain `docs/PROJECT_STATE.md`, `docs/DECISIONS.md`, `docs/TEST_REPORT.md`, and `docs/IMPLEMENTATION_PLAN.md`.
    - Do not claim a test or integration works without real test execution and evidence. Mark missing credentials or services as `BLOCKED`.
+
