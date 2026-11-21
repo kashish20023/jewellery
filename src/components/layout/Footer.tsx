@@ -37,7 +37,7 @@ export function Footer() {
     <footer className="mt-20 bg-ivory-tile border-t border-charcoal-100 text-charcoal-800">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-10">
         <div className="col-span-2 md:col-span-1">
-          <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255325/chudiwalas/site/brand/lockup-black.png" alt="Chudiwalas" width={1450} height={1384} className="h-20 w-auto" />
+          <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255325/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255325/chudiwalas/site/brand/lockup-black.png" alt="Chudiwalas" width={1450} height={1384} className="h-20 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-charcoal-700 max-w-xs">
             Polki, jadau and certified solitaires made in our Jaipur workshop and sold direct to you.
           </p>

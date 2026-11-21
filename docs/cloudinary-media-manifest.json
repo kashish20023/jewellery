@@ -121,6 +121,17 @@
     "referenceRewritten": true
   },
   {
+    "source": "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?q=80&w=1200&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1512163143273-bde0e3cc7407",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259006/chudiwalas/catalogue/photo-1512163143273-bde0e3cc7407.jpg",
+    "bytes": 107360,
+    "format": "jpg",
+    "width": 1200,
+    "height": 800,
+    "referenceRewritten": true
+  },
+  {
     "source": "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?q=80&w=800&auto=format&fit=crop",
     "kind": "remote",
     "publicId": "chudiwalas/catalogue/photo-1512163143273-bde0e3cc7407",
@@ -129,6 +140,17 @@
     "format": "jpg",
     "width": 800,
     "height": 533,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1800&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1515562141207-7a88fb7ce338",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1800/v1795259008/chudiwalas/catalogue/photo-1515562141207-7a88fb7ce338.jpg",
+    "bytes": 155835,
+    "format": "jpg",
+    "width": 1800,
+    "height": 1200,
     "referenceRewritten": true
   },
   {
@@ -143,6 +165,50 @@
     "referenceRewritten": true
   },
   {
+    "source": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1200&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1535632066927-ab7c9ab60908",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259009/chudiwalas/catalogue/photo-1535632066927-ab7c9ab60908.jpg",
+    "bytes": 457934,
+    "format": "jpg",
+    "width": 1200,
+    "height": 1800,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=900&sat=-65&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1535632066927-ab7c9ab60908",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259010/chudiwalas/catalogue/photo-1535632066927-ab7c9ab60908.jpg",
+    "bytes": 253342,
+    "format": "jpg",
+    "width": 900,
+    "height": 1350,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=1200&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1550639525-c97d455acf70",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259011/chudiwalas/catalogue/photo-1550639525-c97d455acf70.jpg",
+    "bytes": 201706,
+    "format": "jpg",
+    "width": 1200,
+    "height": 1637,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1200&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1573408301185-9146fe634ad0",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259012/chudiwalas/catalogue/photo-1573408301185-9146fe634ad0.jpg",
+    "bytes": 114350,
+    "format": "jpg",
+    "width": 1200,
+    "height": 796,
+    "referenceRewritten": true
+  },
+  {
     "source": "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop",
     "kind": "remote",
     "publicId": "chudiwalas/catalogue/photo-1573408301185-9146fe634ad0",
@@ -151,6 +217,17 @@
     "format": "jpg",
     "width": 800,
     "height": 531,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=900&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1573408301185-9146fe634ad0",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259014/chudiwalas/catalogue/photo-1573408301185-9146fe634ad0.jpg",
+    "bytes": 72989,
+    "format": "jpg",
+    "width": 900,
+    "height": 597,
     "referenceRewritten": true
   },
   {
@@ -165,6 +242,17 @@
     "referenceRewritten": true
   },
   {
+    "source": "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=900&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1588444837495-c6cfeb53f32d",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259015/chudiwalas/catalogue/photo-1588444837495-c6cfeb53f32d.jpg",
+    "bytes": 18219,
+    "format": "jpg",
+    "width": 900,
+    "height": 600,
+    "referenceRewritten": true
+  },
+  {
     "source": "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop",
     "kind": "remote",
     "publicId": "chudiwalas/catalogue/photo-1589128777073-263566ae5e4d",
@@ -173,6 +261,28 @@
     "format": "jpg",
     "width": 800,
     "height": 1200,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=900&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1589128777073-263566ae5e4d",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259016/chudiwalas/catalogue/photo-1589128777073-263566ae5e4d.jpg",
+    "bytes": 57560,
+    "format": "jpg",
+    "width": 900,
+    "height": 1350,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1600&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1596944924616-7b38e7cfac36",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1600/v1795259017/chudiwalas/catalogue/photo-1596944924616-7b38e7cfac36.jpg",
+    "bytes": 255228,
+    "format": "jpg",
+    "width": 1600,
+    "height": 2400,
     "referenceRewritten": true
   },
   {
@@ -209,6 +319,17 @@
     "referenceRewritten": true
   },
   {
+    "source": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1400&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1400/v1795259018/chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f.jpg",
+    "bytes": 304642,
+    "format": "jpg",
+    "width": 1400,
+    "height": 2100,
+    "referenceRewritten": true
+  },
+  {
     "source": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
     "kind": "remote",
     "publicId": "chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f",
@@ -238,6 +359,28 @@
     "bytes": 67083,
     "format": "jpg",
     "width": 800,
+    "height": 800,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=900&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1603561591411-07134e71a2a9",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259020/chudiwalas/catalogue/photo-1603561591411-07134e71a2a9.jpg",
+    "bytes": 86773,
+    "format": "jpg",
+    "width": 900,
+    "height": 900,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1200&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1605100804763-247f67b3557e",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259021/chudiwalas/catalogue/photo-1605100804763-247f67b3557e.jpg",
+    "bytes": 87754,
+    "format": "jpg",
+    "width": 1200,
     "height": 800,
     "referenceRewritten": true
   },
@@ -275,6 +418,28 @@
     "referenceRewritten": true
   },
   {
+    "source": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=2400&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1611652022419-a9419f74343d",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_2400/v1795259023/chudiwalas/catalogue/photo-1611652022419-a9419f74343d.jpg",
+    "bytes": 655696,
+    "format": "jpg",
+    "width": 2400,
+    "height": 3595,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=1200&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1617038260897-41a1f14a8ca0",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259024/chudiwalas/catalogue/photo-1617038260897-41a1f14a8ca0.jpg",
+    "bytes": 170299,
+    "format": "jpg",
+    "width": 1200,
+    "height": 1800,
+    "referenceRewritten": true
+  },
+  {
     "source": "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=800&auto=format&fit=crop",
     "kind": "remote",
     "publicId": "chudiwalas/catalogue/photo-1617038260897-41a1f14a8ca0",
@@ -305,6 +470,17 @@
     "format": "jpg",
     "width": 800,
     "height": 533,
+    "referenceRewritten": true
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1620656798579-1984d9e87df7?q=80&w=900&auto=format&fit=crop",
+    "kind": "remote",
+    "publicId": "chudiwalas/catalogue/photo-1620656798579-1984d9e87df7",
+    "url": "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259026/chudiwalas/catalogue/photo-1620656798579-1984d9e87df7.jpg",
+    "bytes": 85766,
+    "format": "jpg",
+    "width": 900,
+    "height": 600,
     "referenceRewritten": true
   }
 ]

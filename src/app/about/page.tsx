@@ -12,8 +12,8 @@ export const metadata = constructMetadata({
 });
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1800&auto=format&fit=crop",
-  bench: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1400&auto=format&fit=crop",
+  hero: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1800/v1795259008/chudiwalas/catalogue/photo-1515562141207-7a88fb7ce338.jpg",
+  bench: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1400/v1795259018/chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f.jpg",
 };
 
 const COMPARE = [

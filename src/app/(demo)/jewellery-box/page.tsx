@@ -48,7 +48,7 @@ export default function JewelleryBoxDemoPage() {
               monogram="P"
               tagline="Timeless Elegance"
               image={{
-                src: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255331/chudiwalas/site/products/polki-jhumka.webp",
+                src: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255331/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255331/chudiwalas/site/products/polki-jhumka.webp",
                 alt: "Polki jhumka earrings",
                 href: "/collections/polki",
               }}
@@ -73,7 +73,7 @@ export default function JewelleryBoxDemoPage() {
               monogram="S"
               tagline="Quiet Brilliance"
               image={{
-                src: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255330/chudiwalas/site/products/polki-drop.webp",
+                src: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255330/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255330/chudiwalas/site/products/polki-drop.webp",
                 alt: "Polki drop earring",
                 href: "/collections/solitaire",
               }}
@@ -98,7 +98,7 @@ export default function JewelleryBoxDemoPage() {
               monogram="B"
               tagline="Garden of Gems"
               image={{
-                src: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255329/chudiwalas/site/products/emerald-brooch.webp",
+                src: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255329/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255329/chudiwalas/site/products/emerald-brooch.webp",
                 alt: "Emerald aur ruby flower brooch",
                 href: "/collections/brooches",
               }}

@@ -11,19 +11,19 @@ export const dynamic = "force-dynamic";
 /* Fixture imagery until the atelier shoot is delivered. Each slot uses a
    distinct photograph so no two tiles on the page repeat. */
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=2400&auto=format&fit=crop",
+  hero: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_2400/v1795259023/chudiwalas/catalogue/photo-1611652022419-a9419f74343d.jpg",
   // "The hands that export it" — the workshop band shows hands, not a product.
-  workshop: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1600&auto=format&fit=crop",
-  chokers: "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=900&auto=format&fit=crop",
-  necklaces: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=900&auto=format&fit=crop",
-  earrings: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=900&sat=-65&auto=format&fit=crop",
-  rings: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=900&auto=format&fit=crop",
-  bracelets: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=900&auto=format&fit=crop",
-  bridal: "https://images.unsplash.com/photo-1620656798579-1984d9e87df7?q=80&w=900&auto=format&fit=crop",
+  workshop: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1600/v1795259017/chudiwalas/catalogue/photo-1596944924616-7b38e7cfac36.jpg",
+  chokers: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259015/chudiwalas/catalogue/photo-1588444837495-c6cfeb53f32d.jpg",
+  necklaces: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259016/chudiwalas/catalogue/photo-1589128777073-263566ae5e4d.jpg",
+  earrings: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259010/chudiwalas/catalogue/photo-1535632066927-ab7c9ab60908.jpg",
+  rings: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259020/chudiwalas/catalogue/photo-1603561591411-07134e71a2a9.jpg",
+  bracelets: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259014/chudiwalas/catalogue/photo-1573408301185-9146fe634ad0.jpg",
+  bridal: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_900/v1795259026/chudiwalas/catalogue/photo-1620656798579-1984d9e87df7.jpg",
   editBridal: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795255342/chudiwalas/catalogue/photo-1610694955371-d4a3e0ce4b52.jpg",
-  everyday: "https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=1200&auto=format&fit=crop",
-  gifting: "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?q=80&w=1200&auto=format&fit=crop",
-  newin: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=1200&auto=format&fit=crop",
+  everyday: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259011/chudiwalas/catalogue/photo-1550639525-c97d455acf70.jpg",
+  gifting: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259006/chudiwalas/catalogue/photo-1512163143273-bde0e3cc7407.jpg",
+  newin: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795259024/chudiwalas/catalogue/photo-1617038260897-41a1f14a8ca0.jpg",
 };
 
 const CATEGORIES = [

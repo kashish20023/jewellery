@@ -35,7 +35,7 @@ const REWRITE = process.argv.includes("--rewrite");
 
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, "public");
-const FIXTURE_DIR = path.join(ROOT, "src", "lib", "fixtures");
+const SRC_DIR = path.join(ROOT, "src");
 const MANIFEST = path.join(ROOT, "docs", "cloudinary-media-manifest.json");
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".svg"]);
 const CONTENT_TYPES: Record<string, string> = {
@@ -97,10 +97,12 @@ async function collectLocal(folder: string): Promise<Target[]> {
 }
 
 async function collectRemote(folder: string): Promise<Target[]> {
-  const files = (await fs.readdir(FIXTURE_DIR)).filter((f) => f.endsWith(".ts"));
+  // The whole src tree, not just fixtures: homepage sections, the about page and
+  // category tiles carry their own remote art.
+  const files = (await walk(SRC_DIR)).filter((f) => /\.(ts|tsx)$/.test(f));
   const found = new Map<string, Target>();
   for (const file of files) {
-    const text = await fs.readFile(path.join(FIXTURE_DIR, file), "utf8");
+    const text = await fs.readFile(file, "utf8");
     for (const match of text.matchAll(/https:\/\/images\.unsplash\.com\/[^"'`\s]+/g)) {
       const source = match[0];
       if (found.has(source)) continue;
@@ -208,8 +210,19 @@ async function main() {
   }
 
   if (manifest.length) {
+    // Merge, never replace: `pnpm media:db` reuses these entries, and a later run
+    // only ever sees the references that still need migrating.
+    const previous: Array<Record<string, unknown>> = await fs
+      .readFile(MANIFEST, "utf8")
+      .then((raw) => JSON.parse(raw))
+      .catch(() => []);
+    const merged = new Map(previous.map((e) => [String(e.source), e]));
+    for (const entry of manifest) merged.set(String(entry.source), entry);
     await fs.mkdir(path.dirname(MANIFEST), { recursive: true });
-    await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + "\n");
+    await fs.writeFile(
+      MANIFEST,
+      JSON.stringify([...merged.values()].sort((a, b) => String(a.source).localeCompare(String(b.source))), null, 2) + "\n"
+    );
   }
   console.log(`\n${manifest.length} uploaded, ${failed} failed.${manifest.length ? ` Manifest: ${path.relative(ROOT, MANIFEST)}` : ""}`);
 

@@ -198,7 +198,7 @@ export function FaqExperience() {
           {/* Subtle Damask Glow */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 pointer-events-none opacity-15 bg-repeat bg-[url('https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255328/chudiwalas/site/damask_pattern_hd.webp')] [background-size:240px_auto] mix-blend-overlay"
+            className="absolute inset-0 pointer-events-none opacity-15 bg-repeat bg-[url('https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255328/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255328/chudiwalas/site/damask_pattern_hd.webp')] [background-size:240px_auto] mix-blend-overlay"
           />
 
           <span className="text-[10px] tracking-widest uppercase text-[#E9E2CC] font-semibold block relative z-10">

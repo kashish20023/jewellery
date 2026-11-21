@@ -14,8 +14,13 @@ export interface CategoryDefinition {
   bannerImageUrl: string;
 }
 
-const U = (id: string, extra = "") =>
-  `https://images.unsplash.com/photo-${id}?q=80&w=1800${extra}&auto=format&fit=crop`;
+// Banner photographs are served from Cloudinary (chudiwalas/catalogue/photo-<id>,
+// uploaded by scripts/upload-media-to-cloudinary.ts). `extra` takes a Cloudinary
+// transformation such as "e_saturation:-65".
+const U = (id: string, extra?: string) => {
+  const transform = ["f_auto", "q_auto", "w_1800", ...(extra ? [extra] : [])].join(",");
+  return `https://res.cloudinary.com/b3ddq6fp/image/upload/${transform}/chudiwalas/catalogue/photo-${id}.jpg`;
+};
 
 export const CATEGORIES: CategoryDefinition[] = [
   {
@@ -37,7 +42,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     label: "Earrings & jhumkas",
     description:
       "Studs, drops and jhumkas balanced for everyday wear, in hallmarked gold with certified stones.",
-    bannerImageUrl: U("1535632066927-ab7c9ab60908", "&sat=-65"),
+    bannerImageUrl: U("1535632066927-ab7c9ab60908", "e_saturation:-65"),
   },
   {
     slug: "rings",
