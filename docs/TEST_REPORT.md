@@ -23,6 +23,7 @@
 | **Polki-Stories feature parity (variants, offers, breakup, shop)**| Vitest 3.2.7 | 188 | 181 | 7 (pre-existing/flaky, see 1.4) | 0 | 2026-11-19T19:30:00+05:30 |
 | **Master prompt pass: variant end-to-end, discovery, admin queues**| Vitest 3.2.7 | 193 | 193 | 0 | 0 | 2026-11-20T12:30:00+05:30 |
 | **Photography upload (admin → storefront)**| Vitest 3.2.7 | 201 | 201 | 0 | 0 | 2026-11-20T14:00:00+05:30 |
+| **Cloudinary image storage (hosted media)**| Vitest 3.2.7 | 207 | 207 | 0 | 0 | 2026-11-21T15:16:00+05:30 |
 | **Add product form + archive**| Vitest 3.2.7 | 201 | 201 | 0 | 0 | 2026-11-20T15:30:00+05:30 |
 | **Palmonas-style redesign (steps 1-2)**| Vitest 3.2.7 | 193 | 193 | 0 | 0 | 2026-11-20T17:30:00+05:30 |
 | **Redesign step 3: simpler admin**| Vitest 3.2.7 | 193 | 193 | 0 | 0 | 2026-11-20T18:30:00+05:30 |

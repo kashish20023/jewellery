@@ -9,6 +9,10 @@ const storagePublicHost = (() => {
   }
 })();
 
+// Cloudinary serves every delivery URL from the shared res.cloudinary.com host,
+// so the allowance is scoped to this account's cloud name rather than the host.
+const cloudinaryCloud = process.env.CLOUDINARY_CLOUD_NAME?.trim() || null;
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
@@ -22,6 +26,9 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      ...(cloudinaryCloud
+        ? [{ protocol: "https" as const, hostname: "res.cloudinary.com", pathname: `/${cloudinaryCloud}/**` }]
+        : []),
       ...(storagePublicHost ? [{ protocol: "https" as const, hostname: storagePublicHost }] : []),
     ],
   },
@@ -57,7 +64,9 @@ const nextConfig: NextConfig = {
               "script-src 'self' 'unsafe-inline' https://checkout.razorpay.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: blob: https://images.unsplash.com" + (storagePublicHost ? ` https://${storagePublicHost}` : ""),
+              "img-src 'self' data: blob: https://images.unsplash.com" +
+                (cloudinaryCloud ? " https://res.cloudinary.com" : "") +
+                (storagePublicHost ? ` https://${storagePublicHost}` : ""),
               "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com",
               "frame-src https://api.razorpay.com https://checkout.razorpay.com",
               "object-src 'none'",

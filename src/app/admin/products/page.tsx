@@ -105,7 +105,7 @@ interface CollectionOpt {
 }
 
 interface StorageInfo {
-  mode: "object-storage" | "local";
+  mode: "cloudinary" | "object-storage" | "local";
   durable: boolean;
   note: string;
 }
