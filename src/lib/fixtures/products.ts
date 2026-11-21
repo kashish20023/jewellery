@@ -13,28 +13,28 @@ export const FIXTURE_COLLECTIONS: FixtureCollection[] = [
     slug: "royal-polki-heritage",
     title: "Royal Polki Heritage",
     description: "Handcrafted un-cut diamonds set in 22K hallmarked gold, inspired by Mughal antiquity.",
-    bannerImageUrl: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop",
+    bannerImageUrl: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795255337/chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f.jpg",
     displayOrder: 1,
   },
   {
     slug: "solitaire-haute-joaillerie",
     title: "Solitaire Haute Joaillerie",
     description: "Certified GIA/IGI natural brilliant solitaires encased in pristine 18K yellow gold and platinum.",
-    bannerImageUrl: "https://images.unsplash.com/photo-1598560917505-59a3ad559071?q=80&w=1200&auto=format&fit=crop",
+    bannerImageUrl: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795255335/chudiwalas/catalogue/photo-1598560917505-59a3ad559071.jpg",
     displayOrder: 2,
   },
   {
     slug: "bridal-connoisseur",
     title: "Bridal Connoisseur",
     description: "Heirloom wedding suites embodying timeless Indian craftsmanship and ceremonial splendor.",
-    bannerImageUrl: "https://images.unsplash.com/photo-1620656798579-1984d9e87df7?q=80&w=1200&auto=format&fit=crop",
+    bannerImageUrl: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795255344/chudiwalas/catalogue/photo-1620656798579-1984d9e87df7.jpg",
     displayOrder: 3,
   },
   {
     slug: "everyday-fine-jewellery",
     title: "Everyday Fine Jewellery",
     description: "Subtle elegance designed for contemporary daily adornment and modern luxury living.",
-    bannerImageUrl: "https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?q=80&w=1200&auto=format&fit=crop",
+    bannerImageUrl: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795255342/chudiwalas/catalogue/photo-1610694955371-d4a3e0ce4b52.jpg",
     displayOrder: 4,
   },
 ];
@@ -70,7 +70,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-polki-1",
-        url: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255338/chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f.jpg",
         altText: "Heritage Polki & Zambian Emerald Choker - Front View",
         displayOrder: 1,
         isPrimary: true,
@@ -78,7 +78,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
       },
       {
         id: "media-polki-2",
-        url: "https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255342/chudiwalas/catalogue/photo-1610694955371-d4a3e0ce4b52.jpg",
         altText: "Heritage Polki Choker - Meenakari Enamel Reverse Detail",
         displayOrder: 2,
         isPrimary: false,
@@ -141,7 +141,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-sol-1",
-        url: "https://images.unsplash.com/photo-1598560917505-59a3ad559071?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255336/chudiwalas/catalogue/photo-1598560917505-59a3ad559071.jpg",
         altText: "Solitaire Brilliant Diamond Pendant - Studio Shot",
         displayOrder: 1,
         isPrimary: true,
@@ -149,7 +149,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
       },
       {
         id: "media-sol-2",
-        url: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255335/chudiwalas/catalogue/photo-1589128777073-263566ae5e4d.jpg",
         altText: "Solitaire Brilliant Diamond Pendant - Model Adornment",
         displayOrder: 2,
         isPrimary: false,
@@ -266,7 +266,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-brc-1",
-        url: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255333/chudiwalas/catalogue/photo-1573408301185-9146fe634ad0.jpg",
         altText: "Eternal Brilliant Diamond Tennis Bracelet - Top View",
         displayOrder: 1,
         isPrimary: true,
@@ -329,7 +329,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-nizam-1",
-        url: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255332/chudiwalas/catalogue/photo-1515562141207-7a88fb7ce338.jpg",
         altText: "Royal Nizam Basra Pearl & Diamond Necklace - Presentation",
         displayOrder: 1,
         isPrimary: true,
@@ -385,7 +385,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-nath-1",
-        url: "https://images.unsplash.com/photo-1620656798579-1984d9e87df7?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255345/chudiwalas/catalogue/photo-1620656798579-1984d9e87df7.jpg",
         altText: "Bespoke Bridal Nath & Maang Tikka Set",
         displayOrder: 1,
         isPrimary: true,
@@ -441,7 +441,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-rng-1",
-        url: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255339/chudiwalas/catalogue/photo-1602751584552-8ba73aad10e1.jpg",
         altText: "Art Deco Sapphire Cocktail Ring",
         displayOrder: 1,
         isPrimary: true,
@@ -501,7 +501,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-bnd-1",
-        url: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255343/chudiwalas/catalogue/photo-1617038260897-41a1f14a8ca0.jpg",
         altText: "Constellation Star-Set Diamond Signet Band",
         displayOrder: 1,
         isPrimary: true,
@@ -570,7 +570,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-sol-round-1",
-        url: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255341/chudiwalas/catalogue/photo-1605100804763-247f67b3557e.jpg",
         altText: "Classic solitaire ring - Round 0.5ct studio view",
         displayOrder: 1,
         isPrimary: true,
@@ -578,7 +578,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
       },
       {
         id: "media-sol-round-2",
-        url: "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255332/chudiwalas/catalogue/photo-1512163143273-bde0e3cc7407.jpg",
         altText: "Classic solitaire ring - Round 0.5ct model hand view",
         displayOrder: 2,
         isPrimary: false,
@@ -661,7 +661,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-sol-oval-1",
-        url: "https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255334/chudiwalas/catalogue/photo-1584302179602-e4c3d3fd629d.jpg",
         altText: "Classic solitaire ring - Oval 0.5ct studio view",
         displayOrder: 1,
         isPrimary: true,
@@ -669,7 +669,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
       },
       {
         id: "media-sol-oval-2",
-        url: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255340/chudiwalas/catalogue/photo-1603561591411-07134e71a2a9.jpg",
         altText: "Classic solitaire ring - Oval 0.5ct model hand view",
         displayOrder: 2,
         isPrimary: false,
@@ -724,7 +724,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
     media: [
       {
         id: "media-sol-pear-1",
-        url: "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255332/chudiwalas/catalogue/photo-1512163143273-bde0e3cc7407.jpg",
         altText: "Classic solitaire ring - Pear 0.5ct studio view",
         displayOrder: 1,
         isPrimary: true,
@@ -732,7 +732,7 @@ export const FIXTURE_PRODUCTS: (RawProduct & { collectionSlugs: string[] })[] = 
       },
       {
         id: "media-sol-pear-2",
-        url: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=800&auto=format&fit=crop",
+        url: "https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_800/v1795255343/chudiwalas/catalogue/photo-1617038260897-41a1f14a8ca0.jpg",
         altText: "Classic solitaire ring - Pear 0.5ct lifestyle hand view",
         displayOrder: 2,
         isPrimary: false,

@@ -7,7 +7,7 @@ const demoItems: CardItem[] = [
     id: 1,
     title: 'Royal Polki Heritage',
     subtitle: 'Explore Suite',
-    imageUrl: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: 'https://res.cloudinary.com/b3ddq6fp/image/upload/f_auto,q_auto,w_1200/v1795255337/chudiwalas/catalogue/photo-1599643478518-a784e5dc4c8f.jpg',
     href: '/collections/polki-heritage',
   },
   {

@@ -8,8 +8,15 @@
 ## 1. One-time setup, in order
 
 ### 1.1 Cloudinary (images)
+> **Done on 2026-11-21** for cloud `b3ddq6fp`: 28 assets live under `chudiwalas/`,
+> recorded in `docs/cloudinary-media-manifest.json`. The steps below are for a
+> fresh account or a re-run.
+
 1. Create a free account, then open **Settings → API Keys**.
-2. Note the **Cloud name**, **API Key** and **API Secret**.
+2. Note the **Cloud name**, **API Key** and **API Secret**. The key needs a **write
+   role** (Master Admin, or Media Library User) — Cloudinary creates new keys with no
+   permissions at all, and a read-only key fails every upload with
+   `403 ... missing permissions (actions=["create"])` while `/ping` still returns 200.
 3. Put them in your local `.env` (see `.env.example`):
    ```
    CLOUDINARY_CLOUD_NAME=...
@@ -24,6 +31,9 @@
    pnpm test && pnpm build           # must stay green before committing
    ```
    The manifest of every uploaded asset lands in `docs/cloudinary-media-manifest.json`.
+   SVG crests are uploaded but keep their local `/public` references: `next/image`
+   refuses remote SVG without `dangerouslyAllowSVG`. `public/` keeps the original
+   files as the source of truth even once the site serves the Cloudinary copies.
 
    With `CLOUDINARY_*` set, `/api/admin/media/upload` automatically stores new admin
    uploads in Cloudinary instead of the non-durable local `uploads/` folder.

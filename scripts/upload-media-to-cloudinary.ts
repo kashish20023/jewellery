@@ -135,12 +135,14 @@ async function rewriteReferences(map: Map<string, string>): Promise<string[]> {
   for (const [source, target] of map) {
     if (source.startsWith("/")) expanded.set("${SITE_URL}" + source, target);
   }
-  // Longest source first, so a URL is never half-replaced by a shorter prefix.
-  const pairs = [...expanded.entries()].sort((a, b) => b[0].length - a[0].length);
+  // One pass over the file, longest source first. Sequential replaces would corrupt
+  // the output: a Cloudinary target ends in the very path it replaced, so a later
+  // source would match inside a URL this run just inserted.
+  const sources = [...expanded.keys()].sort((a, b) => b.length - a.length);
+  const pattern = new RegExp(sources.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "g");
   for (const file of files) {
     const before = await fs.readFile(file, "utf8");
-    let after = before;
-    for (const [source, target] of pairs) after = after.split(source).join(target);
+    const after = before.replace(pattern, (match) => expanded.get(match) ?? match);
     if (after !== before) {
       await fs.writeFile(file, after);
       touched.push(path.relative(ROOT, file));
