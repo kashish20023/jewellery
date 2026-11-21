@@ -17,6 +17,7 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
     "media:cloudinary": "tsx scripts/upload-media-to-cloudinary.ts",
+    "media:db": "tsx scripts/migrate-db-media-to-cloudinary.ts",
     "admin:create": "tsx scripts/create-admin.ts"
   },
   "dependencies": {

@@ -49,6 +49,18 @@ DATABASE_URL="<direct-url>" pnpm admin:create you@chudiwalas.com "Your Name" OWN
 
 The second command prints a generated password once if you do not pass one.
 
+Once the catalogue rows exist in the hosted database, repoint their imagery too —
+`ProductMedia.url` and `Collection.bannerImageUrl` are what the storefront actually
+serves, and they are independent of the source-code migration in §1.1:
+
+```bash
+DATABASE_URL="<direct-url>" pnpm media:db --dry-run   # report only
+DATABASE_URL="<direct-url>" pnpm media:db             # update the rows
+```
+
+Rows already on `res.cloudinary.com` are skipped, and a URL already present in the
+manifest is reused rather than uploaded twice, so re-running is cheap and safe.
+
 ### 1.3 Vercel project
 Import the GitHub repo. Framework detection is automatic; leave Install and Build
 commands at their defaults — `postinstall` runs `prisma generate` for the build.
