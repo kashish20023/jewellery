@@ -10,7 +10,7 @@
 1. **Scope Authority**:
    - Scope is governed by the approved PRD and `docs/DECISIONS.md`.
    - Supported: Domestic Indian storefront (INR), responsive mobile-first catalogue, guest wishlist (local storage), guest checkout, one hosted payment gateway (Razorpay sandbox), admin portal with RBAC, WhatsApp consultation builder, callback requests, appointment requests.
-   - Excluded: Customer accounts, AR virtual try-on, AI styling, live metal rates/scrapers, ERP sync, international commerce/currencies, automated WhatsApp bots/chatbots.
+   - Excluded: Customer accounts, AR virtual try-on, automated styling, live metal rates/scrapers, ERP sync, international commerce/currencies, automated messaging engines.
 
 2. **Commerce & Data Invariants**:
    - **Monetary Values**: All money stored strictly as integer minor units (`paise` in INR, 1 INR = 100 paise).

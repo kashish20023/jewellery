@@ -1,0 +1,601 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Chudiwalas Fine Jewellery — brand tokens
+   Source: docs/Chudiwalas_Brand_Guidelines.pdf
+   Split guideline: 60% ivory, 25% olive green, 10% charcoal, 5% burnt orange
+   ========================================================================== */
+:root {
+  --background: #F6F0E2;      /* Page canvas: brand ivory; products sit on white tiles */
+  --foreground: #1A1A1A;      /* Charcoal Black */
+  --color-olive: #556B2F;     /* Primary */
+  --color-olive-dark: #45561F;
+  --color-olive-tint: #E7EBDC;
+  --color-orange: #CC5500;    /* Accent */
+  --color-orange-dark: #B04A00;
+  --color-ivory: #F6F0E2;
+  --color-tile: #F7F4EE;
+  --color-ivory-deep: #E9E2CC;
+  --color-charcoal: #1A1A1A;
+  --font-sans: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+  --font-serif: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background-color: var(--color-olive);
+  color: var(--color-ivory);
+}
+
+/* Heading Typography — Poppins SemiBold, slightly tightened for display sizes */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Accessibility: Visible Focus Indicators */
+*:focus-visible {
+  outline: 2px solid var(--color-olive);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Skip to Content Link (S26) */
+.skip-to-content {
+  position: absolute;
+  top: -9999px;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-olive);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-ivory);
+  border-radius: 2px;
+  box-shadow: 0 4px 12px rgba(85, 107, 47, 0.4);
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+}
+
+/* Accessibility: Reduced Motion Compliance (S26) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  /* ------------------------------------------------------------------
+     Buttons — guidelines p.7: uppercase, wide letter spacing, Poppins Medium,
+     ivory on burnt orange for the primary call to action.
+     Class names are kept for compatibility with existing pages.
+     ------------------------------------------------------------------ */
+
+  /* Primary CTA: ivory on burnt orange */
+  .btn-gold {
+    @apply bg-[#CC5500] hover:bg-[#B04A00] text-[#F6F0E2] border border-[#CC5500] hover:border-[#B04A00] font-medium px-6 py-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-xs tracking-[0.18em] uppercase font-sans shadow-sm;
+  }
+
+  /* Secondary: ivory on olive */
+  .btn-charcoal {
+    @apply bg-[#556B2F] hover:bg-[#45561F] text-[#F6F0E2] border border-[#556B2F] hover:border-[#45561F] font-medium px-6 py-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-xs tracking-[0.18em] uppercase font-sans shadow-sm;
+  }
+
+  /* Tertiary: olive outline on ivory */
+  .btn-outline-gold {
+    @apply bg-transparent hover:bg-[#556B2F] text-[#556B2F] hover:text-[#F6F0E2] border border-[#556B2F] font-medium px-6 py-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-xs tracking-[0.18em] uppercase font-sans;
+  }
+
+  .badge-hallmark {
+    @apply inline-flex items-center text-[11px] tracking-[0.16em] uppercase font-medium bg-olive-100 text-olive-800 px-2.5 py-1 border border-olive-200 font-sans;
+  }
+
+  /* Section eyebrow label: olive on olive tint */
+  .eyebrow {
+    @apply inline-block text-[11px] uppercase tracking-[0.22em] font-medium text-olive-700 bg-olive-100 px-2.5 py-1 rounded-sm font-sans;
+  }
+
+  .gpu-layer {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* ------------------------------------------------------------------
+     Jaipur arch motif — echoes the cusped arch of the Chudiwalas crest.
+     Apply to image frames (hero, collection tiles, gallery).
+     ------------------------------------------------------------------ */
+  .arch-frame {
+    border-radius: 999px 999px 0 0;
+    overflow: hidden;
+  }
+
+  .arch-frame-sm {
+    border-radius: 999px 999px 12px 12px;
+    overflow: hidden;
+  }
+
+  /* Thin olive rule with a centred diamond, used as a section divider */
+  .ornament-rule {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(85, 107, 47, 0.45), transparent);
+  }
+
+  .ornament-rule::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--color-orange);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  /* ------------------------------------------------------------------
+     Motion — restrained. Guidelines ask for clean layouts and no effects
+     on the logo. Sheens are soft ivory light, never gold glitter.
+     ------------------------------------------------------------------ */
+  .tatva-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tatva-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      transparent 35%,
+      rgba(246, 240, 226, 0.35) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%) rotate(25deg);
+    transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .tatva-shimmer:hover::after {
+    transform: translateX(120%) rotate(25deg);
+  }
+
+  /* Badges no longer auto-sweep; kept as a no-op for compatibility */
+  .tatva-badge-sheen {
+    position: relative;
+  }
+
+  @keyframes tatvaFloatMotion {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .tatva-float {
+    animation: tatvaFloatMotion 7s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .tatva-card {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  }
+
+  .tatva-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -8px rgba(26, 26, 26, 0.14), 0 0 0 1px rgba(85, 107, 47, 0.35);
+  }
+
+  @keyframes flourishLineDraw {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    100% {
+      width: 60px;
+      opacity: 1;
+    }
+  }
+
+  .tatva-flourish-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #556B2F, #CC5500, transparent);
+    animation: flourishLineDraw 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* ==========================================================================
+   Homepage editorial layer (v2): cinematic hero, ticker, bento, steps
+   ========================================================================== */
+@layer components {
+  /* Olive cinematic overlay for full-bleed photography */
+  .hero-veil {
+    background:
+      linear-gradient(180deg, rgba(22, 28, 10, 0.55) 0%, rgba(22, 28, 10, 0.25) 40%, rgba(22, 28, 10, 0.78) 100%),
+      linear-gradient(90deg, rgba(22, 28, 10, 0.65) 0%, rgba(22, 28, 10, 0.05) 70%);
+  }
+
+  /* Continuous ticker — pauses on hover, static under reduced motion */
+  .ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    gap: 0;
+    animation: tickerScroll 42s linear infinite;
+    will-change: transform;
+  }
+
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes tickerScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
+    }
+  }
+
+  /* Hairline frame inset inside a photo tile, echoing a jadau border */
+  .inset-frame::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(246, 240, 226, 0.55);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Horizontal scroller with snap for mobile rails */
+  .rail {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+
+  /* Big serif numeral used in the making-of steps */
+  .step-numeral {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(246, 240, 226, 0.18);
+  }
+
+  /* Native accordion styling for the FAQ preview */
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item[open] .faq-plus {
+    transform: rotate(45deg);
+  }
+}
+
+/* ==========================================================================
+   Admin portal — same palette and Poppins, denser spacing
+   ========================================================================== */
+@layer components {
+  .adm-card {
+    @apply bg-ivory-50 border border-ivory-400 rounded-md shadow-subtle;
+  }
+
+  .adm-label {
+    @apply block text-[11px] uppercase tracking-[0.14em] text-charcoal-600 font-medium mb-1;
+  }
+
+  .adm-input {
+    @apply w-full px-3 py-2 border border-ivory-400 bg-white rounded-md text-sm text-charcoal-950 placeholder:text-charcoal-300 focus:outline-none focus:ring-2 focus:ring-olive-500/40 focus:border-olive-500 disabled:bg-ivory-200 disabled:text-charcoal-500 transition-colors;
+  }
+
+  .adm-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-ivory-50 text-xs font-medium tracking-[0.08em] uppercase rounded-md shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .adm-btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-olive-600 hover:bg-olive-700 text-ivory-50 text-xs font-medium tracking-[0.08em] uppercase rounded-md shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .adm-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-1.5 border border-ivory-400 bg-ivory-50 hover:bg-ivory-200 text-charcoal-800 text-xs font-medium rounded-md transition-colors disabled:opacity-50;
+  }
+
+  .adm-table {
+    @apply w-full text-left text-sm;
+  }
+
+  .adm-table thead {
+    @apply bg-ivory-100 border-b border-ivory-400 text-charcoal-600 uppercase tracking-[0.12em] text-[11px];
+  }
+
+  .adm-table th {
+    @apply py-3 px-4 font-medium whitespace-nowrap;
+  }
+
+  .adm-table tbody {
+    @apply divide-y divide-ivory-300;
+  }
+
+  .adm-table td {
+    @apply py-3 px-4 align-top;
+  }
+
+  .adm-table tbody tr:hover {
+    @apply bg-ivory-100/70;
+  }
+
+  .adm-chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-[0.1em] border whitespace-nowrap;
+  }
+}
+
+/* Gallery crossfade when the selected variant's photo set changes */
+@keyframes galleryFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheetUp {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Product detail tab-panel entrance */
+@keyframes tabPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-panel-in {
+  animation: tabPanelIn 0.28s ease-out both;
+}
+
+/* Proportional price-breakup bar segments grow on first paint */
+@keyframes barGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.bar-seg {
+  transform-origin: left center;
+  animation: barGrow 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-panel-in,
+  .bar-seg {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Editorial layer (v3) — "close to the hands"
+   The brand pins palette (olive / burnt orange / ivory / charcoal) and Poppins
+   as the only typeface, so personality comes from scale and weight contrast:
+   very large Light display type against small, quiet medium-weight UI text.
+   No tracked-out uppercase eyebrows, no arrow glyphs appended to link text.
+   ========================================================================== */
+@layer components {
+  /* --- Display scale: Poppins Light, optically tightened as size grows --- */
+  .display-hero {
+    font-weight: 300;
+    font-size: clamp(2.75rem, 7.2vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.038em;
+  }
+
+  .display-xl {
+    font-weight: 300;
+    font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.032em;
+  }
+
+  .display-lg {
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.6vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.028em;
+  }
+
+  /* Section heading: quieter than the display, still clearly a heading */
+  .head-section {
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.1vw, 1.95rem);
+    line-height: 1.15;
+    letter-spacing: -0.022em;
+    color: #1A1A1A;
+  }
+
+  /* Standfirst under a display line */
+  .lede {
+    font-size: clamp(0.975rem, 1.05vw, 1.125rem);
+    line-height: 1.68;
+    max-width: 58ch;
+  }
+
+  .measure {
+    max-width: 64ch;
+  }
+
+  /* Small print that is NOT shouted: sentence case, medium weight */
+  .meta {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+
+  /* --- Surfaces --- */
+  /* Products sit on white tiles so they read as lit objects on the ivory field */
+  .tile-product {
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  .rule-hair {
+    height: 1px;
+    background: rgba(26, 26, 26, 0.12);
+  }
+
+  /* Text link that underlines on hover instead of growing an arrow */
+  .link-quiet {
+    color: #45561F;
+    text-underline-offset: 0.35em;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s ease;
+  }
+
+  .link-quiet:hover {
+    color: #CC5500;
+    text-decoration-line: underline;
+  }
+
+  /* --- The single orchestrated motion: hero entrance --- */
+  @keyframes heroRise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes heroFrame {
+    from {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .hero-rise {
+    animation: heroRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-frame {
+    animation: heroFrame 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-d1 { animation-delay: 0.08s; }
+  .hero-d2 { animation-delay: 0.18s; }
+  .hero-d3 { animation-delay: 0.28s; }
+
+  /* Product imagery: the only hover affordance is the image itself */
+  .img-zoom {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .group:hover .img-zoom {
+    transform: scale(1.045);
+  }
+}

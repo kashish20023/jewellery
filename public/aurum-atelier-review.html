@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurum Atelier — Fine Indian Haute Joaillerie (Interactive Review)</title>
+  <meta name="description" content="Museum-grade syndicate polki diamonds, natural solitaires, and heirloom suites meticulously hand-set in 18K & 22K BIS hallmarked gold." />
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            plum: {
+              DEFAULT: '#7A2E6F',
+              deep: '#280C24',
+              dark: '#54174B',
+              light: '#9B3E8F',
+            },
+            rose: {
+              DEFAULT: '#F4D7D4',
+              soft: '#FBF0EE',
+              accent: '#E5A89E',
+            },
+            ivory: {
+              50: '#FDFBF9',
+              100: '#FAF7F2',
+              200: '#F3ECE3',
+            },
+            charcoal: {
+              900: '#1F1E24',
+              950: '#141318',
+            }
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            serif: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Global Styling & Smooth Rendering */
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #280C24;
+      background-color: #FAF7F2;
+    }
+
+    /* Ambient Damask Wallpaper Breathing Animation */
+    @keyframes damaskAmbientPulse {
+      0%, 100% { opacity: 0.17; filter: brightness(1); }
+      50% { opacity: 0.25; filter: brightness(1.05); }
+    }
+    .damask-wallpaper {
+      animation: damaskAmbientPulse 18s ease-in-out infinite;
+    }
+
+    /* Signature Tatvadhan Gold Sheen Sweep */
+    .tatva-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .tatva-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(244, 215, 212, 0.25) 45%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(227, 183, 120, 0.45) 55%,
+        transparent 70%
+      );
+      transform: translateX(-120%) rotate(25deg);
+      transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .tatva-shimmer:hover::after {
+      transform: translateX(120%) rotate(25deg);
+    }
+
+    /* Periodic Sheen for Royal Badges */
+    @keyframes periodicSheenSweep {
+      0%, 75% { transform: translateX(-130%) rotate(25deg); }
+      100% { transform: translateX(130%) rotate(25deg); }
+    }
+    .tatva-badge-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+    .tatva-badge-sheen::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 35%, rgba(255, 255, 255, 0.7) 50%, transparent 65%);
+      animation: periodicSheenSweep 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Luxury Card Elevation */
+    .tatva-card {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tatva-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -8px rgba(122, 46, 111, 0.16), 0 0 0 1px rgba(122, 46, 111, 0.2);
+    }
+
+    /* 3D Jewellery Box Styles */
+    .jewellery-box-root {
+      container-type: inline-size;
+      aspect-ratio: 1 / 1.25;
+      width: 100%;
+      perspective: 1200px;
+    }
+    .box-assembly {
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(0);
+    }
+    .jewellery-box-root:hover .box-assembly,
+    .jewellery-box-root.is-open .box-assembly {
+      transform: translateY(34cqw);
+    }
+    .box-lid {
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: rotateX(0deg);
+    }
+    .jewellery-box-root:hover .box-lid,
+    .jewellery-box-root.is-open .box-lid {
+      transform: rotateX(116deg);
+    }
+    .box-lid-face-b {
+      transform: rotateX(180deg);
+      backface-visibility: hidden;
+    }
+    .box-lid-face-a {
+      backface-visibility: hidden;
+    }
+    .velvet-product-card {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0s;
+    }
+    .jewellery-box-root:hover .velvet-product-card,
+    .jewellery-box-root.is-open .velvet-product-card {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.65s;
+    }
+
+    /* Buttons */
+    .btn-gold {
+      background-color: #7A2E6F;
+      color: #FFFFFF;
+      border: 1px solid #7A2E6F;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold:hover {
+      background-color: #F4D7D4;
+      color: #7A2E6F;
+      border-color: #7A2E6F;
+    }
+    .btn-outline-gold {
+      background-color: #F4D7D4;
+      color: #7A2E6F;
+      border: 2px solid #7A2E6F;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-outline-gold:hover {
+      background-color: #7A2E6F;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative selection:bg-rose selection:text-plum">
+
+  <!-- ============================================================== -->
+  <!-- 1. ROYAL DAMASK BACKGROUND & PLUM TINT LAYER                  -->
+  <!-- ============================================================== -->
+  <!-- Damask SVG Vector Pattern (Works completely offline & standalone!) -->
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 pointer-events-none -z-20 bg-repeat damask-wallpaper"
+    style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'240\' viewBox=\'0 0 160 240\'><g fill=\'none\' stroke=\'%23D1B48C\' stroke-width=\'0.8\' opacity=\'0.75\'><path d=\'M80,20 C90,40 120,45 120,70 C120,95 90,110 80,130 C70,110 40,95 40,70 C40,45 70,40 80,20 Z\'/><circle cx=\'80\' cy=\'70\' r=\'12\'/><path d=\'M80,70 C85,60 95,60 95,70 C95,80 85,85 80,95 C75,85 65,80 65,70 C65,60 75,60 80,70 Z\'/><path d=\'M80,130 C95,150 130,160 130,190 C130,215 95,225 80,240 C65,225 30,215 30,190 C30,160 65,150 80,130 Z\'/><circle cx=\'80\' cy=\'190\' r=\'10\'/><path d=\'M0,20 C10,35 30,40 30,60 C30,80 10,90 0,110 C-10,90 -30,80 -30,60 C-30,40 -10,35 0,20 Z\'/><path d=\'M160,20 C170,35 190,40 190,60 C190,80 170,90 160,110 C150,90 130,80 130,60 C130,40 150,35 160,20 Z\'/><path d=\'M0,140 C10,155 30,160 30,180 C30,200 10,210 0,230 C-10,210 -30,200 -30,180 C-30,160 -10,155 0,140 Z\'/><path d=\'M160,140 C170,155 190,160 190,180 C190,200 170,210 160,230 C150,210 130,200 130,180 C130,160 150,155 160,140 Z\'/></g></svg>'); background-size: 260px auto;"
+  ></div>
+
+  <!-- Low Opacity Plum (#7A2E6F) Tint Layer -->
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 pointer-events-none -z-10 bg-[#7A2E6F] opacity-[0.05]"
+  ></div>
+
+  <!-- Palace Ambient Vignette Overlay -->
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(122,46,111,0.06)_100%)]"
+  ></div>
+
+  <!-- ============================================================== -->
+  <!-- 2. TOP ANNOUNCEMENT & HEADER NAVIGATION                        -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-xs transition-all duration-300">
+    <!-- Top Announcement Strip -->
+    <div class="bg-[#280C24] text-white text-[11px] font-mono tracking-widest uppercase py-2 px-4 text-center border-b border-[#7A2E6F]/30">
+      <span>&bull; BIS Hallmarked 22K & 18K Pure Gold</span>
+      <span class="mx-3 text-[#F4D7D4]">&bull;</span>
+      <span>Complimentary Insured Armored Doorstep Transit Across India</span>
+      <span class="mx-3 text-[#F4D7D4]">&bull;</span>
+      <span>100% Natural Certified Diamonds</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Left Menu Links -->
+      <nav class="hidden lg:flex items-center space-x-7 text-xs uppercase font-medium tracking-wider text-stone-800">
+        <a href="#collections" class="hover:text-[#7A2E6F] transition-colors">Collections</a>
+        <a href="#jewellery-boxes" class="hover:text-[#7A2E6F] transition-colors">Unboxing Suite</a>
+        <a href="#product-grid" class="hover:text-[#7A2E6F] transition-colors">Fine Creations</a>
+        <a href="#heritage" class="hover:text-[#7A2E6F] transition-colors">Heritage Craft</a>
+        <a href="#faqs" class="hover:text-[#7A2E6F] transition-colors">FAQs</a>
+      </nav>
+
+      <!-- Center Logo Monogram -->
+      <div class="text-center">
+        <a href="#" class="inline-block group">
+          <span class="text-2xl sm:text-3xl font-serif font-semibold tracking-wider text-[#280C24] group-hover:text-[#7A2E6F] transition-colors">
+            AURUM ATELIER
+          </span>
+          <span class="block text-[9px] font-mono tracking-[0.3em] uppercase text-[#7A2E6F] -mt-1">
+            HAUTE JOAILLERIE &bull; JAIPUR
+          </span>
+        </a>
+      </div>
+
+      <!-- Right Action Icons -->
+      <div class="flex items-center space-x-4 sm:space-x-5 text-stone-800">
+        <a
+          href="https://wa.me/919876543210?text=Hello%20Aurum%20Atelier%2C%20I%20would%20like%20to%20inquire%20about%20a%20private%20consultation"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#7A2E6F] bg-[#F4D7D4]/60 hover:bg-[#F4D7D4] px-3.5 py-1.5 rounded-full font-medium transition-all"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>WhatsApp Stylist</span>
+        </a>
+
+        <!-- Wishlist Icon with Live Count -->
+        <button id="nav-wishlist-btn" class="relative p-2 text-stone-700 hover:text-[#7A2E6F] transition-colors" title="Wishlist">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span id="wishlist-badge" class="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#7A2E6F] text-white text-[10px] font-mono flex items-center justify-center font-bold">2</span>
+        </button>
+
+        <!-- Cart Bag Icon -->
+        <button id="nav-cart-btn" class="relative p-2 text-stone-700 hover:text-[#7A2E6F] transition-colors" title="Shopping Bag">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#7A2E6F] text-white text-[10px] font-mono flex items-center justify-center font-bold">1</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 3. EDITORIAL HERO SECTION                                      -->
+  <!-- ============================================================== -->
+  <section class="relative min-h-[85vh] flex items-center justify-center bg-[#141318] text-white px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <!-- Hero Image Backdrop -->
+    <div class="absolute inset-0 z-0 opacity-40">
+      <img
+        src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1800&auto=format&fit=crop"
+        alt="Aurum Atelier Regal Jewellery Heritage"
+        class="w-full h-full object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#141318] via-[#141318]/70 to-[#141318]/40"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(122,46,111,0.4)_0%,rgba(20,19,24,0.95)_75%)] pointer-events-none"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center py-20">
+      <div class="inline-block mb-6">
+        <span class="text-xs uppercase font-mono tracking-[0.25em] text-[#7A2E6F] bg-[#F4D7D4] border border-[#7A2E6F] px-4 py-1.5 rounded-full font-semibold shadow-sm inline-block tatva-badge-sheen">
+          Domestic Indian Haute Joaillerie
+        </span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif text-white font-normal tracking-tight leading-[1.1]">
+        The Ancestral Poetry of <span class="text-[#F4D7D4]">Pure Gold & Polki</span>
+      </h1>
+
+      <p class="mt-6 text-sm sm:text-base md:text-lg text-stone-300 font-light max-w-2xl mx-auto leading-relaxed">
+        Museum-grade syndicate polki diamonds, natural solitaires, and heirloom suites meticulously hand-set in 18K & 22K BIS hallmarked gold.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="#product-grid"
+          class="w-full sm:w-auto btn-gold text-xs px-8 py-4 flex items-center justify-center gap-2 tatva-shimmer rounded uppercase font-medium tracking-wide shadow-md"
+        >
+          <span>Explore Curated Suites</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a
+          href="https://wa.me/919876543210?text=Hello%20Aurum%20Atelier%2C%20I%20would%20like%20to%20schedule%20a%20private%20jewellery%20consultation"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto btn-outline-gold text-xs px-8 py-4 flex items-center justify-center gap-2 tatva-shimmer rounded uppercase font-medium tracking-wide shadow-md"
+        >
+          <svg class="w-4 h-4 text-[#7A2E6F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>Concierge Consultation</span>
+        </a>
+      </div>
+
+      <!-- Quick Assurance Badges -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-[11px] font-mono text-[#F4D7D4] tracking-widest uppercase font-medium">
+        <span>&bull; BIS Hallmarked 916 & 750</span>
+        <span>&bull; IGI / SGL Certified Natural Diamonds</span>
+        <span>&bull; Door-to-Door Insured Transit</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 4. SIGNATURE COLLECTIONS                                      -->
+  <!-- ============================================================== -->
+  <section id="collections" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="flex flex-col sm:flex-row justify-between items-baseline mb-12 border-b border-stone-200/80 pb-6">
+      <div>
+        <span class="text-[11px] uppercase font-mono tracking-widest text-[#7A2E6F] bg-[#F4D7D4] px-2.5 py-0.5 rounded font-semibold inline-block mb-2 tatva-badge-sheen">
+          Curated Suites
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif text-[#280C24] font-normal">
+          Signature Collections
+        </h2>
+      </div>
+      <a href="#product-grid" class="text-xs uppercase tracking-wider font-mono text-stone-700 hover:text-[#7A2E6F] transition-colors flex items-center gap-1 mt-4 sm:mt-0 font-medium">
+        <span>View All 179 Pieces</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Collection 1 -->
+      <div class="group relative flex flex-col bg-white border border-stone-200 hover:border-[#7A2E6F] transition-all duration-300 overflow-hidden shadow-sm tatva-card tatva-shimmer rounded-xl">
+        <div class="relative aspect-[3/4] w-full overflow-hidden bg-stone-100">
+          <img
+            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+            alt="Royal Polki Heritage"
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#280C24]/85 via-[#280C24]/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5 text-white">
+            <h3 class="font-serif text-lg font-medium text-white group-hover:text-[#F4D7D4] transition-colors">
+              Royal Polki Heritage
+            </h3>
+            <span class="text-[10px] font-mono uppercase tracking-widest text-[#F4D7D4] block mt-1 font-semibold">
+              Explore Suite &rarr;
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collection 2 -->
+      <div class="group relative flex flex-col bg-white border border-stone-200 hover:border-[#7A2E6F] transition-all duration-300 overflow-hidden shadow-sm tatva-card tatva-shimmer rounded-xl">
+        <div class="relative aspect-[3/4] w-full overflow-hidden bg-stone-100">
+          <img
+            src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+            alt="Solitaire Haute Joaillerie"
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#280C24]/85 via-[#280C24]/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5 text-white">
+            <h3 class="font-serif text-lg font-medium text-white group-hover:text-[#F4D7D4] transition-colors">
+              Solitaire Haute Joaillerie
+            </h3>
+            <span class="text-[10px] font-mono uppercase tracking-widest text-[#F4D7D4] block mt-1 font-semibold">
+              Explore Suite &rarr;
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collection 3 -->
+      <div class="group relative flex flex-col bg-white border border-stone-200 hover:border-[#7A2E6F] transition-all duration-300 overflow-hidden shadow-sm tatva-card tatva-shimmer rounded-xl">
+        <div class="relative aspect-[3/4] w-full overflow-hidden bg-stone-100">
+          <img
+            src="https://images.unsplash.com/photo-1611591475870-745a556391d1?q=80&w=800&auto=format&fit=crop"
+            alt="Bridal Connoisseur"
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#280C24]/85 via-[#280C24]/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5 text-white">
+            <h3 class="font-serif text-lg font-medium text-white group-hover:text-[#F4D7D4] transition-colors">
+              Bridal Connoisseur
+            </h3>
+            <span class="text-[10px] font-mono uppercase tracking-widest text-[#F4D7D4] block mt-1 font-semibold">
+              Explore Suite &rarr;
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collection 4 -->
+      <div class="group relative flex flex-col bg-white border border-stone-200 hover:border-[#7A2E6F] transition-all duration-300 overflow-hidden shadow-sm tatva-card tatva-shimmer rounded-xl">
+        <div class="relative aspect-[3/4] w-full overflow-hidden bg-stone-100">
+          <img
+            src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop"
+            alt="Everyday Fine Jewellery"
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#280C24]/85 via-[#280C24]/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5 text-white">
+            <h3 class="font-serif text-lg font-medium text-white group-hover:text-[#F4D7D4] transition-colors">
+              Everyday Fine Jewellery
+            </h3>
+            <span class="text-[10px] font-mono uppercase tracking-widest text-[#F4D7D4] block mt-1 font-semibold">
+              Explore Suite &rarr;
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 5. 3D INTERACTIVE JEWELLERY GIFT BOXES                         -->
+  <!-- ============================================================== -->
+  <section id="jewellery-boxes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col sm:flex-row justify-between items-baseline mb-8 border-b border-stone-200/80 pb-4">
+      <div>
+        <span class="text-[11px] uppercase font-mono tracking-widest text-[#7A2E6F] bg-[#F4D7D4] px-2.5 py-0.5 rounded font-semibold inline-block mb-2 tatva-badge-sheen">
+          Interactive 3D Experience
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif text-[#280C24] font-normal">
+          The Interactive Gift Boxes
+        </h2>
+        <p class="text-xs sm:text-sm text-stone-600 font-light mt-1">
+          Hover over any plum gift box (or click/tap on mobile) to unlock the handcrafted velvet suite within.
+        </p>
+      </div>
+      <span class="text-xs font-mono uppercase tracking-wider text-[#7A2E6F] font-semibold mt-2 sm:mt-0">
+        3D Pure CSS &bull; Hover to Open
+      </span>
+    </div>
+
+    <!-- 3 Box Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 items-start pt-6">
+
+      <!-- BOX 1: Polki Pair -->
+      <div class="flex flex-col items-center w-full">
+        <div class="jewellery-box-root relative cursor-pointer select-none" data-box-id="box-1">
+          <div class="box-assembly absolute inset-0 w-full h-full">
+            <!-- Lower Velvet Tray -->
+            <div class="absolute inset-x-0 bottom-0 h-[64cqw] rounded-b-[2cqw] bg-gradient-to-b from-[#280C24] to-[#140612] p-[1.5cqw] shadow-2xl border-t border-[#7A2E6F]">
+              <!-- Blush Velvet Cushion -->
+              <div class="w-full h-full rounded-[1.2cqw] bg-[#FBF0EE] border border-[#E3B778] p-[2cqw] flex items-center justify-center relative overflow-hidden">
+                <!-- Single Featured Product Card -->
+                <div class="velvet-product-card h-[98%] aspect-square bg-white rounded-[1.2cqw] border border-[#E3B778] shadow-[0_8px_22px_rgba(122,46,111,0.22)] p-[1.1cqw] flex flex-col items-center justify-center">
+                  <div class="relative w-full h-full rounded-[0.7cqw] overflow-hidden bg-stone-100">
+                    <img
+                      src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop"
+                      alt="Polki jhumka earrings"
+                      class="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3D Flip Lid -->
+            <div class="box-lid absolute inset-x-0 top-0 h-[64cqw] rounded-t-[2cqw] z-20">
+              <!-- Face A: Plum Exterior Cover -->
+              <div class="box-lid-face-a absolute inset-0 rounded-[2cqw] bg-gradient-to-br from-[#7A2E6F] to-[#4A1643] p-[2.5cqw] text-white shadow-xl border border-[#F4D7D4]/30 flex flex-col justify-between">
+                <div class="flex justify-between items-center text-[10px] font-mono tracking-widest text-[#F4D7D4]">
+                  <span>NO. 01</span>
+                  <span class="w-6 h-6 rounded-full border border-[#F4D7D4] flex items-center justify-center font-bold">P</span>
+                </div>
+                <div class="text-center my-auto">
+                  <h3 class="font-serif text-2xl font-normal text-white">Polki Pair</h3>
+                  <div class="w-12 h-0.5 bg-[#F4D7D4] mx-auto my-2"></div>
+                  <p class="text-[10px] font-mono tracking-wider text-[#F4D7D4] uppercase">Heritage Collection 2026</p>
+                </div>
+                <div class="flex justify-between items-end text-[9px] font-mono text-[#F4D7D4]/80">
+                  <span>Hover to Unlock</span>
+                  <span>Jaipur Atelier</span>
+                </div>
+              </div>
+
+              <!-- Face B: Soft Rose Interior Lid -->
+              <div class="box-lid-face-b absolute inset-0 rounded-[2cqw] bg-[#FBF0EE] p-[3cqw] border-2 border-[#7A2E6F] flex flex-col items-center justify-center text-center">
+                <span class="text-xs uppercase font-serif tracking-[0.2em] text-[#7A2E6F] font-semibold">Timeless Elegance</span>
+                <div class="w-16 h-px bg-[#7A2E6F]/40 my-2"></div>
+                <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500">&bull; Handcrafted Jadau &bull;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <h4 class="font-serif text-sm font-medium text-stone-900">Polki Pair</h4>
+          <p class="text-xs text-stone-500 font-light">Handcrafted 22K Jadau Jhumkas</p>
+        </div>
+      </div>
+
+      <!-- BOX 2: Solitaire -->
+      <div class="flex flex-col items-center w-full">
+        <div class="jewellery-box-root relative cursor-pointer select-none" data-box-id="box-2">
+          <div class="box-assembly absolute inset-0 w-full h-full">
+            <!-- Lower Velvet Tray -->
+            <div class="absolute inset-x-0 bottom-0 h-[64cqw] rounded-b-[2cqw] bg-gradient-to-b from-[#280C24] to-[#140612] p-[1.5cqw] shadow-2xl border-t border-[#7A2E6F]">
+              <div class="w-full h-full rounded-[1.2cqw] bg-[#FBF0EE] border border-[#E3B778] p-[2cqw] flex items-center justify-center relative overflow-hidden">
+                <div class="velvet-product-card h-[98%] aspect-square bg-white rounded-[1.2cqw] border border-[#E3B778] shadow-[0_8px_22px_rgba(122,46,111,0.22)] p-[1.1cqw] flex flex-col items-center justify-center">
+                  <div class="relative w-full h-full rounded-[0.7cqw] overflow-hidden bg-stone-100">
+                    <img
+                      src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+                      alt="Solitaire Drop Ring"
+                      class="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3D Flip Lid -->
+            <div class="box-lid absolute inset-x-0 top-0 h-[64cqw] rounded-t-[2cqw] z-20">
+              <div class="box-lid-face-a absolute inset-0 rounded-[2cqw] bg-gradient-to-br from-[#7A2E6F] to-[#4A1643] p-[2.5cqw] text-white shadow-xl border border-[#F4D7D4]/30 flex flex-col justify-between">
+                <div class="flex justify-between items-center text-[10px] font-mono tracking-widest text-[#F4D7D4]">
+                  <span>NO. 02</span>
+                  <span class="w-6 h-6 rounded-full border border-[#F4D7D4] flex items-center justify-center font-bold">S</span>
+                </div>
+                <div class="text-center my-auto">
+                  <h3 class="font-serif text-2xl font-normal text-white">Solitaire</h3>
+                  <div class="w-12 h-0.5 bg-[#F4D7D4] mx-auto my-2"></div>
+                  <p class="text-[10px] font-mono tracking-wider text-[#F4D7D4] uppercase">Certified Natural Diamonds</p>
+                </div>
+                <div class="flex justify-between items-end text-[9px] font-mono text-[#F4D7D4]/80">
+                  <span>Hover to Unlock</span>
+                  <span>IGI Certified</span>
+                </div>
+              </div>
+
+              <div class="box-lid-face-b absolute inset-0 rounded-[2cqw] bg-[#FBF0EE] p-[3cqw] border-2 border-[#7A2E6F] flex flex-col items-center justify-center text-center">
+                <span class="text-xs uppercase font-serif tracking-[0.2em] text-[#7A2E6F] font-semibold">Quiet Brilliance</span>
+                <div class="w-16 h-px bg-[#7A2E6F]/40 my-2"></div>
+                <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500">&bull; E-F VVS Solitaire &bull;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <h4 class="font-serif text-sm font-medium text-stone-900">Solitaire</h4>
+          <p class="text-xs text-stone-500 font-light">Certified Natural Solitaire Drop</p>
+        </div>
+      </div>
+
+      <!-- BOX 3: Brooch -->
+      <div class="flex flex-col items-center w-full">
+        <div class="jewellery-box-root relative cursor-pointer select-none" data-box-id="box-3">
+          <div class="box-assembly absolute inset-0 w-full h-full">
+            <div class="absolute inset-x-0 bottom-0 h-[64cqw] rounded-b-[2cqw] bg-gradient-to-b from-[#280C24] to-[#140612] p-[1.5cqw] shadow-2xl border-t border-[#7A2E6F]">
+              <div class="w-full h-full rounded-[1.2cqw] bg-[#FBF0EE] border border-[#E3B778] p-[2cqw] flex items-center justify-center relative overflow-hidden">
+                <div class="velvet-product-card h-[98%] aspect-square bg-white rounded-[1.2cqw] border border-[#E3B778] shadow-[0_8px_22px_rgba(122,46,111,0.22)] p-[1.1cqw] flex flex-col items-center justify-center">
+                  <div class="relative w-full h-full rounded-[0.7cqw] overflow-hidden bg-stone-100">
+                    <img
+                      src="https://images.unsplash.com/photo-1611591475870-745a556391d1?q=80&w=800&auto=format&fit=crop"
+                      alt="Emerald Brooch"
+                      class="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="box-lid absolute inset-x-0 top-0 h-[64cqw] rounded-t-[2cqw] z-20">
+              <div class="box-lid-face-a absolute inset-0 rounded-[2cqw] bg-gradient-to-br from-[#7A2E6F] to-[#4A1643] p-[2.5cqw] text-white shadow-xl border border-[#F4D7D4]/30 flex flex-col justify-between">
+                <div class="flex justify-between items-center text-[10px] font-mono tracking-widest text-[#F4D7D4]">
+                  <span>NO. 03</span>
+                  <span class="w-6 h-6 rounded-full border border-[#F4D7D4] flex items-center justify-center font-bold">B</span>
+                </div>
+                <div class="text-center my-auto">
+                  <h3 class="font-serif text-2xl font-normal text-white">Brooch</h3>
+                  <div class="w-12 h-0.5 bg-[#F4D7D4] mx-auto my-2"></div>
+                  <p class="text-[10px] font-mono tracking-wider text-[#F4D7D4] uppercase">Garden of Royal Gems</p>
+                </div>
+                <div class="flex justify-between items-end text-[9px] font-mono text-[#F4D7D4]/80">
+                  <span>Hover to Unlock</span>
+                  <span>Zambian Emerald</span>
+                </div>
+              </div>
+
+              <div class="box-lid-face-b absolute inset-0 rounded-[2cqw] bg-[#FBF0EE] p-[3cqw] border-2 border-[#7A2E6F] flex flex-col items-center justify-center text-center">
+                <span class="text-xs uppercase font-serif tracking-[0.2em] text-[#7A2E6F] font-semibold">Garden of Gems</span>
+                <div class="w-16 h-px bg-[#7A2E6F]/40 my-2"></div>
+                <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500">&bull; Zambian Emerald & Ruby &bull;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <h4 class="font-serif text-sm font-medium text-stone-900">Brooch</h4>
+          <p class="text-xs text-stone-500 font-light">Emerald & Ruby Floral Statement</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 6. PRODUCT CATALOGUE WITH 3, 4, 6 COLUMN SWITCHER & QUICK VIEW -->
+  <!-- ============================================================== -->
+  <section id="product-grid" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <!-- Section Header & Toolbar Controls -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-stone-200/80 mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-serif text-[#280C24] font-normal">
+          Royal Polki Heritage <span class="text-stone-500 font-sans text-xs sm:text-sm font-light">(6 products)</span>
+        </h2>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- 3, 4, 6 Column Switcher Buttons -->
+        <div class="hidden sm:flex items-center gap-1.5 border-l border-stone-200 pl-4">
+          <!-- 3 Columns -->
+          <button id="col-btn-3" class="p-1.5 rounded text-stone-400 hover:text-stone-700 transition-colors" title="3 Columns View">
+            <svg width="15" height="14" viewBox="0 0 15 14" fill="currentColor"><rect x="1" y="1" width="3" height="12" rx="0.5" /><rect x="6" y="1" width="3" height="12" rx="0.5" /><rect x="11" y="1" width="3" height="12" rx="0.5" /></svg>
+          </button>
+          <!-- 4 Columns (Default) -->
+          <button id="col-btn-4" class="p-1.5 rounded text-stone-900 bg-stone-100 transition-colors" title="4 Columns View">
+            <svg width="17" height="14" viewBox="0 0 17 14" fill="currentColor"><rect x="1" y="1" width="2.6" height="12" rx="0.5" /><rect x="5.2" y="1" width="2.6" height="12" rx="0.5" /><rect x="9.4" y="1" width="2.6" height="12" rx="0.5" /><rect x="13.6" y="1" width="2.6" height="12" rx="0.5" /></svg>
+          </button>
+          <!-- 6 Columns -->
+          <button id="col-btn-6" class="p-1.5 rounded text-stone-400 hover:text-stone-700 transition-colors" title="6 Columns View">
+            <svg width="22" height="14" viewBox="0 0 22 14" fill="currentColor"><rect x="1" y="1" width="1.8" height="12" rx="0.4" /><rect x="4.4" y="1" width="1.8" height="12" rx="0.4" /><rect x="7.8" y="1" width="1.8" height="12" rx="0.4" /><rect x="11.2" y="1" width="1.8" height="12" rx="0.4" /><rect x="14.6" y="1" width="1.8" height="12" rx="0.4" /><rect x="18" y="1" width="1.8" height="12" rx="0.4" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Grid Container -->
+    <div id="dynamic-product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 transition-all duration-500 ease-out">
+
+      <!-- Product 1: Classic Solitaire Round -->
+      <div class="group relative flex flex-col items-center text-center bg-white p-2.5 sm:p-3 transition-all duration-300 rounded-xl shadow-xs border border-stone-100 hover:border-stone-200">
+        <div class="relative aspect-square w-full overflow-hidden rounded-lg bg-[#FAF8F5]/80">
+          <img
+            src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+            alt="Classic solitaire ring - Round 0.5ct studio view"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:opacity-0 group-hover:scale-105"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+            alt="Classic solitaire ring - Round 0.5ct model hand view"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-105"
+          />
+          <!-- Wishlist Heart Button -->
+          <button class="wishlist-toggle-btn absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/80 hover:bg-white text-stone-700 transition-all z-10 shadow-xs active:scale-95" title="Add to Wishlist">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+        </div>
+
+        <div class="w-full mt-3.5 space-y-1">
+          <h3 class="font-serif text-[13.5px] sm:text-[15px] font-normal text-stone-900 group-hover:text-[#7A2E6F] transition-colors line-clamp-1">
+            Classic solitaire ring - Round 0.5ct
+          </h3>
+          <p class="text-xs text-stone-600 font-light">From ₹28,900.00</p>
+          <div class="flex items-center justify-center gap-1.5 pt-1">
+            <span class="w-3 h-3 rounded-full bg-[#E5A89E] border border-stone-300"></span>
+            <span class="w-3 h-3 rounded-full bg-[#E5E7EB] border border-stone-300"></span>
+            <span class="w-3 h-3 rounded-full bg-[#E8C265] border border-stone-300"></span>
+          </div>
+          <button
+            class="quick-view-btn text-[11px] sm:text-xs font-semibold text-[#8B263E] hover:text-[#7A2E6F] tracking-wide underline-offset-4 hover:underline pt-1 block mx-auto transition-colors cursor-pointer"
+            data-title="Classic solitaire ring - Round 0.5ct"
+            data-price="₹28,900.00"
+            data-img="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+            data-desc="A timeless four-prong solitaire engagement ring hand-set with a 0.50 ct round brilliant diamond in 18K yellow and rose gold with comfort-fit shank."
+            data-metal="18K Rose Gold &bull; 750 Purity"
+          >
+            Quick view
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 2: Classic Solitaire Oval -->
+      <div class="group relative flex flex-col items-center text-center bg-white p-2.5 sm:p-3 transition-all duration-300 rounded-xl shadow-xs border border-stone-100 hover:border-stone-200">
+        <div class="relative aspect-square w-full overflow-hidden rounded-lg bg-[#FAF8F5]/80">
+          <img
+            src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+            alt="Classic solitaire ring - Oval 0.5ct studio view"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:opacity-0 group-hover:scale-105"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop"
+            alt="Classic solitaire ring - Oval 0.5ct model hand view"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-105"
+          />
+          <button class="wishlist-toggle-btn absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/80 hover:bg-white text-stone-700 transition-all z-10 shadow-xs active:scale-95" title="Add to Wishlist">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+        </div>
+
+        <div class="w-full mt-3.5 space-y-1">
+          <h3 class="font-serif text-[13.5px] sm:text-[15px] font-normal text-stone-900 group-hover:text-[#7A2E6F] transition-colors line-clamp-1">
+            Classic solitaire ring - Oval 0.5ct
+          </h3>
+          <p class="text-xs text-stone-600 font-light">From ₹28,900.00</p>
+          <div class="flex items-center justify-center gap-1.5 pt-1">
+            <span class="w-3 h-3 rounded-full bg-[#E5A89E] border border-stone-300"></span>
+            <span class="w-3 h-3 rounded-full bg-[#E5E7EB] border border-stone-300"></span>
+            <span class="w-3 h-3 rounded-full bg-[#E8C265] border border-stone-300"></span>
+          </div>
+          <button
+            class="quick-view-btn text-[11px] sm:text-xs font-semibold text-[#8B263E] hover:text-[#7A2E6F] tracking-wide underline-offset-4 hover:underline pt-1 block mx-auto transition-colors cursor-pointer"
+            data-title="Classic solitaire ring - Oval 0.5ct"
+            data-price="₹28,900.00"
+            data-img="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+            data-desc="Handcrafted oval solitaire ring featuring a certified 0.50 ct natural oval diamond with brilliant facet scintillation and micro-claw setting."
+            data-metal="18K Yellow Gold &bull; 750 Purity"
+          >
+            Quick view
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 3: Classic Solitaire Pear -->
+      <div class="group relative flex flex-col items-center text-center bg-white p-2.5 sm:p-3 transition-all duration-300 rounded-xl shadow-xs border border-stone-100 hover:border-stone-200">
+        <div class="relative aspect-square w-full overflow-hidden rounded-lg bg-[#FAF8F5]/80">
+          <img
+            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+            alt="Classic solitaire ring - Pear 0.5ct studio view"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:opacity-0 group-hover:scale-105"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop"
+            alt="Classic solitaire ring - Pear 0.5ct model hand view"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 group-hover:opacity-100 group-hover:scale-105"
+          />
+          <button class="wishlist-toggle-btn absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/80 hover:bg-white text-stone-700 transition-all z-10 shadow-xs active:scale-95" title="Add to Wishlist">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+        </div>
+
+        <div class="w-full mt-3.5 space-y-1">
+          <h3 class="font-serif text-[13.5px] sm:text-[15px] font-normal text-stone-900 group-hover:text-[#7A2E6F] transition-colors line-clamp-1">
+            Classic solitaire ring - Pear 0.5ct
+          </h3>
+          <p class="text-xs text-stone-600 font-light">From ₹28,900.00</p>
+          <div class="flex items-center justify-center gap-1.5 pt-1">
+            <span class="w-3 h-3 rounded-full bg-[#E5A89E] border border-stone-300"></span>
+            <span class="w-3 h-3 rounded-full bg-[#E5E7EB] border border-stone-300"></span>
+            <span class="w-3 h-3 rounded-full bg-[#E8C265] border border-stone-300"></span>
+          </div>
+          <button
+            class="quick-view-btn text-[11px] sm:text-xs font-semibold text-[#8B263E] hover:text-[#7A2E6F] tracking-wide underline-offset-4 hover:underline pt-1 block mx-auto transition-colors cursor-pointer"
+            data-title="Classic solitaire ring - Pear 0.5ct"
+            data-price="₹28,900.00"
+            data-img="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+            data-desc="Graceful teardrop pear-cut solitaire ring hand-set with a V-tip prong and 18K hallmarked white and yellow gold split gallery."
+            data-metal="18K White Gold &bull; 750 Purity"
+          >
+            Quick view
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 4: Heritage Polki Choker -->
+      <div class="group relative flex flex-col items-center text-center bg-white p-2.5 sm:p-3 transition-all duration-300 rounded-xl shadow-xs border border-stone-100 hover:border-stone-200">
+        <div class="relative aspect-square w-full overflow-hidden rounded-lg bg-[#FAF8F5]/80">
+          <img
+            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+            alt="Heritage Polki & Zambian Emerald Choker"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-105"
+          />
+          <button class="wishlist-toggle-btn absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/80 hover:bg-white text-stone-700 transition-all z-10 shadow-xs active:scale-95" title="Add to Wishlist">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+        </div>
+
+        <div class="w-full mt-3.5 space-y-1">
+          <h3 class="font-serif text-[13.5px] sm:text-[15px] font-normal text-stone-900 group-hover:text-[#7A2E6F] transition-colors line-clamp-1">
+            Heritage Polki & Zambian Emerald Choker
+          </h3>
+          <p class="text-xs text-stone-600 font-light">₹1,00,000.00</p>
+          <div class="flex items-center justify-center gap-1.5 pt-1">
+            <span class="w-3 h-3 rounded-full bg-[#E8C265] border border-stone-300"></span>
+          </div>
+          <button
+            class="quick-view-btn text-[11px] sm:text-xs font-semibold text-[#8B263E] hover:text-[#7A2E6F] tracking-wide underline-offset-4 hover:underline pt-1 block mx-auto transition-colors cursor-pointer"
+            data-title="Heritage Polki & Zambian Emerald Choker"
+            data-price="₹1,00,000.00"
+            data-img="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop"
+            data-desc="Handcrafted in 22K hallmarked yellow gold with uncut syndicate polki diamonds and natural cushion-cut Zambian emeralds with traditional Meenakari work."
+            data-metal="22K Yellow Gold &bull; 916 Purity"
+          >
+            Quick view
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 7. CRAFTSMANSHIP & ATELIER HERITAGE                            -->
+  <!-- ============================================================== -->
+  <section id="heritage" class="bg-white/80 backdrop-blur-xs border-y border-stone-200 py-16 sm:py-24 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Story Image -->
+        <div class="relative aspect-[4/3] w-full overflow-hidden border border-stone-200 shadow-md rounded-2xl tatva-card">
+          <img
+            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop"
+            alt="Karigar handcrafting traditional Jadau Polki choker"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        <!-- Narrative -->
+        <div class="space-y-6">
+          <span class="text-[11px] uppercase font-mono tracking-widest text-[#7A2E6F] bg-[#F4D7D4] px-2.5 py-0.5 rounded font-semibold inline-block mb-1 tatva-badge-sheen">
+            Ancestral Karigar Heritage
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-serif text-[#280C24] font-normal leading-snug">
+            Where Century-Old Jadau Meets Modern Precision
+          </h2>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
+            In our Jaipur atelier, uncut syndicate polki diamonds are individually enclosed in pure 24K gold foil (Daak) to evoke radiant inner brilliance. The reverse sides are embellished with delicate Meenakari enamel, transforming each heirloom piece into a dual-sided work of devotional artistry.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 border-t border-stone-200">
+            <div class="space-y-1">
+              <span class="font-serif text-3xl font-bold text-[#7A2E6F] block">100%</span>
+              <h4 class="text-xs font-mono uppercase tracking-wider text-stone-900 font-semibold">
+                BIS Hallmarked
+              </h4>
+              <p class="text-[11px] text-stone-500">
+                Certified 22K (916) and 18K (750) purity standards.
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <span class="font-serif text-3xl font-bold text-[#7A2E6F] block">Zero</span>
+              <h4 class="text-xs font-mono uppercase tracking-wider text-stone-900 font-semibold">
+                Synthetic Gemstones
+              </h4>
+              <p class="text-[11px] text-stone-500">
+                Exclusively earth-mined certified natural solitaires and polki.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 8. FREQUENTLY ASKED QUESTIONS (FAQS) ACCORDION                 -->
+  <!-- ============================================================== -->
+  <section id="faqs" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+      <span class="text-[11px] uppercase font-mono tracking-widest text-[#7A2E6F] bg-[#F4D7D4] px-3 py-1 rounded-full font-semibold inline-block tatva-badge-sheen shadow-xs">
+        Client Knowledge Base
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-serif text-[#280C24] font-normal">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-600 font-light">
+        Everything you need to know regarding our BIS Hallmarking, certified natural diamonds, armored shipping, and custom commissions.
+      </p>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 justify-start sm:justify-center scrollbar-none">
+      <button class="faq-filter-btn px-4 py-2 text-xs rounded-full whitespace-nowrap font-medium transition-all bg-[#7A2E6F] text-white border border-[#7A2E6F] shadow-xs cursor-pointer" data-filter="all">All Questions</button>
+      <button class="faq-filter-btn px-4 py-2 text-xs rounded-full whitespace-nowrap font-medium transition-all bg-white/80 text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-filter="hallmarking">Certification & BIS</button>
+      <button class="faq-filter-btn px-4 py-2 text-xs rounded-full whitespace-nowrap font-medium transition-all bg-white/80 text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-filter="orders">Orders & Shipping</button>
+      <button class="faq-filter-btn px-4 py-2 text-xs rounded-full whitespace-nowrap font-medium transition-all bg-white/80 text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-filter="payments">Payments & PAN</button>
+      <button class="faq-filter-btn px-4 py-2 text-xs rounded-full whitespace-nowrap font-medium transition-all bg-white/80 text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-filter="care">Care & Maintenance</button>
+    </div>
+
+    <!-- Accordion FAQ Items -->
+    <div class="space-y-4" id="faq-list">
+      <!-- FAQ 1 -->
+      <div class="faq-item bg-white/90 backdrop-blur-xs border border-stone-200/80 rounded-xl overflow-hidden shadow-xs hover:border-[#7A2E6F]/30 transition-all duration-300" data-category="hallmarking">
+        <button class="faq-question-btn w-full py-5 px-6 flex items-start justify-between text-left gap-4 cursor-pointer select-none">
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono tracking-widest uppercase text-[#7A2E6F] font-semibold block">Certification & BIS</span>
+            <h3 class="font-serif text-base sm:text-lg text-stone-900 font-medium">How do I verify the authenticity and hallmarking of Aurum Atelier jewellery?</h3>
+          </div>
+          <div class="faq-icon w-8 h-8 rounded-full flex items-center justify-center border bg-[#7A2E6F] text-white border-[#7A2E6F] transition-transform duration-300 rotate-180">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer px-6 pb-6 pt-1 text-sm text-stone-600 font-light leading-relaxed border-t border-stone-100/80">
+          <p>Every single gold creation is hallmarked by the Bureau of Indian Standards (BIS) and carries the official 6-digit alphanumeric HUID (Hallmark Unique Identification) laser-engraved alongside the purity stamp (916 for 22 Karat, 750 for 18 Karat). You can verify your piece instantly using the official BIS Care mobile application. Natural solitaires and diamond suites are additionally certified by independent laboratories like IGI or SGL.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item bg-white/90 backdrop-blur-xs border border-stone-200/80 rounded-xl overflow-hidden shadow-xs hover:border-[#7A2E6F]/30 transition-all duration-300" data-category="orders">
+        <button class="faq-question-btn w-full py-5 px-6 flex items-start justify-between text-left gap-4 cursor-pointer select-none">
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono tracking-widest uppercase text-[#7A2E6F] font-semibold block">Orders & Shipping</span>
+            <h3 class="font-serif text-base sm:text-lg text-stone-900 font-medium">How is high-value precious jewellery delivered safely across India?</h3>
+          </div>
+          <div class="faq-icon w-8 h-8 rounded-full flex items-center justify-center border bg-stone-50 text-stone-500 border-stone-200 transition-transform duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer hidden px-6 pb-6 pt-1 text-sm text-stone-600 font-light leading-relaxed border-t border-stone-100/80">
+          <p>We provide complimentary, 100% insured door-to-door transit across all serviceable PIN codes in India via specialized secure logistics partners (such as Sequel Logistics and BVC Logistics). Every shipment is transported in an armored tamper-evident security bag and requires a secure OTP verification and government-issued photo ID signature upon delivery.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item bg-white/90 backdrop-blur-xs border border-stone-200/80 rounded-xl overflow-hidden shadow-xs hover:border-[#7A2E6F]/30 transition-all duration-300" data-category="payments">
+        <button class="faq-question-btn w-full py-5 px-6 flex items-start justify-between text-left gap-4 cursor-pointer select-none">
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono tracking-widest uppercase text-[#7A2E6F] font-semibold block">Payments & PAN</span>
+            <h3 class="font-serif text-base sm:text-lg text-stone-900 font-medium">Is PAN card submission mandatory for purchasing jewellery?</h3>
+          </div>
+          <div class="faq-icon w-8 h-8 rounded-full flex items-center justify-center border bg-stone-50 text-stone-500 border-stone-200 transition-transform duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer hidden px-6 pb-6 pt-1 text-sm text-stone-600 font-light leading-relaxed border-t border-stone-100/80">
+          <p>Yes. In strict accordance with Government of India regulations (Rule 114B of the Income Tax Act), furnishing a valid Permanent Account Number (PAN) is legally required for any single precious jewellery transaction equal to or exceeding ₹2,00,000 (INR). Our secure checkout will seamlessly prompt for PAN details when applicable.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item bg-white/90 backdrop-blur-xs border border-stone-200/80 rounded-xl overflow-hidden shadow-xs hover:border-[#7A2E6F]/30 transition-all duration-300" data-category="care">
+        <button class="faq-question-btn w-full py-5 px-6 flex items-start justify-between text-left gap-4 cursor-pointer select-none">
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono tracking-widest uppercase text-[#7A2E6F] font-semibold block">Care & Maintenance</span>
+            <h3 class="font-serif text-base sm:text-lg text-stone-900 font-medium">How should I store and care for Jadau Polki jewellery at home?</h3>
+          </div>
+          <div class="faq-icon w-8 h-8 rounded-full flex items-center justify-center border bg-stone-50 text-stone-500 border-stone-200 transition-transform duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer hidden px-6 pb-6 pt-1 text-sm text-stone-600 font-light leading-relaxed border-t border-stone-100/80">
+          <p>Jadau Polki jewellery should always be preserved in airtight containers or velvet-lined boxes away from moisture, humidity, and direct chemical sprays like perfumes or hairsprays. Never submerge Jadau Polki pieces in water or ultrasonic cleaners, as moisture can alter the delicate 24K gold foil (Daak). We recommend wiping your jewellery with a clean, soft suede cloth after every wear.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 9. BESPOKE WHATSAPP CONCIERGE BANNER                           -->
+  <!-- ============================================================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="bg-[#141318] text-white p-8 sm:p-14 border border-stone-800 text-center relative overflow-hidden rounded-2xl shadow-xl">
+      <div class="max-w-2xl mx-auto space-y-6 relative z-10">
+        <span class="text-[11px] uppercase font-mono tracking-widest text-[#7A2E6F] bg-[#F4D7D4] px-2.5 py-0.5 rounded font-semibold inline-block mb-1 tatva-badge-sheen">
+          Private Concierge
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif text-white font-normal">
+          Bespoke Bridal & High Jewellery Commissions
+        </h2>
+        <p class="text-xs sm:text-sm text-stone-300 leading-relaxed font-light">
+          Collaborate directly with our senior jewellery designers and master gemologists to create a custom one-of-a-kind suite or customize necklines, carats, and gemstones.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+          <a
+            href="https://wa.me/919876543210?text=Hello%20Aurum%20Atelier%2C%20I%20would%20like%20to%20consult%20on%20a%20bespoke%20jewellery%20piece"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-gold inline-flex items-center justify-center gap-2 text-xs py-4 px-8 rounded shadow-sm tatva-shimmer font-medium"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Connect with Stylist on WhatsApp</span>
+          </a>
+          <a
+            href="#product-grid"
+            class="btn-outline-gold inline-flex items-center justify-center gap-2 text-xs py-4 px-8 rounded shadow-sm tatva-shimmer font-medium"
+          >
+            <span>Browse All Collections</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 10. LUXURY FOOTER                                              -->
+  <!-- ============================================================== -->
+  <footer class="bg-[#FAF7F5] text-stone-900 border-t border-stone-200 font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-stone-200">
+        <!-- Col 1: Brand Atelier -->
+        <div class="lg:col-span-2 space-y-4">
+          <span class="text-xl font-serif font-semibold tracking-wider text-[#280C24]">AURUM ATELIER</span>
+          <p class="text-xs text-stone-600 font-light max-w-sm leading-relaxed">
+            Domestic Indian Haute Joaillerie house handcrafting syndicate polki diamonds, solitaires, and heirloom jewellery in 18K & 22K hallmarked gold.
+          </p>
+          <div class="pt-2 text-xs font-mono text-[#7A2E6F] space-y-1">
+            <p>Atelier & Vault: Tonk Road, Jaipur, Rajasthan 302018</p>
+            <p>Direct Concierge: +91 98765 43210</p>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-[#7A2E6F] font-semibold">Atelier</h4>
+          <ul class="space-y-2 text-xs text-stone-600">
+            <li><a href="#collections" class="hover:text-[#7A2E6F] transition-colors">Our Collections</a></li>
+            <li><a href="#jewellery-boxes" class="hover:text-[#7A2E6F] transition-colors">Interactive Gift Boxes</a></li>
+            <li><a href="#heritage" class="hover:text-[#7A2E6F] transition-colors">Heritage Craft</a></li>
+            <li><a href="#faqs" class="hover:text-[#7A2E6F] transition-colors">Client FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Assistance -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-[#7A2E6F] font-semibold">Client Care</h4>
+          <ul class="space-y-2 text-xs text-stone-600">
+            <li><a href="#faqs" class="hover:text-[#7A2E6F] transition-colors">BIS Certification Guide</a></li>
+            <li><a href="#faqs" class="hover:text-[#7A2E6F] transition-colors">Domestic Armored Shipping</a></li>
+            <li><a href="#faqs" class="hover:text-[#7A2E6F] transition-colors">Lifetime Buyback Policy</a></li>
+            <li><a href="#faqs" class="hover:text-[#7A2E6F] transition-colors">Jewellery Care Guide</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-[#7A2E6F] font-semibold">Private Gazette</h4>
+          <p class="text-[11px] text-stone-500 font-light">Receive invitations to private vault releases and jewellery exhibitions.</p>
+          <form id="newsletter-form" class="space-y-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              class="w-full text-xs px-3.5 py-2.5 bg-white border border-stone-200 rounded focus:outline-none focus:border-[#7A2E6F]"
+            />
+            <button type="submit" class="w-full btn-gold text-xs py-2.5 rounded font-medium">
+              Join Gazette
+            </button>
+          </form>
+          <div id="newsletter-success" class="hidden text-xs text-emerald-700 font-medium">Thank you for joining our private gazette.</div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 font-mono gap-4">
+        <div>&copy; 2026 Aurum Atelier India Pvt Ltd. All rights reserved.</div>
+        <div class="flex items-center gap-4">
+          <span>BIS Hallmarked 916 / 750</span>
+          <span>&bull;</span>
+          <span>HUID Compliant</span>
+          <span>&bull;</span>
+          <span>IGI / SGL Certified</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================== -->
+  <!-- 11. QUICK VIEW MODAL DIALOG                                    -->
+  <!-- ============================================================== -->
+  <div id="quick-view-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs">
+    <div class="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-stone-100 animate-in zoom-in-95 duration-200" onclick="event.stopPropagation()">
+      <!-- Close Button -->
+      <button id="modal-close-btn" class="absolute top-4 right-4 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 z-10 transition-colors" title="Close">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="relative aspect-square w-full bg-[#FAF8F5]">
+          <img id="modal-img" src="" alt="" class="w-full h-full object-cover object-center" />
+        </div>
+        <div class="p-6 sm:p-8 flex flex-col justify-between space-y-4">
+          <div>
+            <span id="modal-metal" class="text-[10px] font-mono tracking-widest uppercase text-[#7A2E6F] font-semibold block mb-1">
+              18K Rose Gold &bull; 750 Purity
+            </span>
+            <h3 id="modal-title" class="font-serif text-xl sm:text-2xl text-stone-900 font-normal leading-snug">
+              Classic solitaire ring - Round 0.5ct
+            </h3>
+            <p id="modal-price" class="text-lg font-serif text-stone-900 font-semibold mt-2">
+              From ₹28,900.00
+            </p>
+            <p id="modal-desc" class="text-xs text-stone-600 font-light mt-3 leading-relaxed">
+              A timeless solitaire engagement ring hand-set with a 0.50 ct round brilliant diamond.
+            </p>
+            <div class="mt-4 pt-4 border-t border-stone-100 flex items-center gap-4 text-[11px] text-stone-500 font-mono">
+              <span class="inline-flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-[#7A2E6F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                BIS Hallmarked
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-[#7A2E6F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
+                Natural Diamonds
+              </span>
+            </div>
+          </div>
+          <div class="space-y-2 pt-2">
+            <a
+              id="modal-wa-btn"
+              href="https://wa.me/919876543210?text=Hello%20Aurum%20Atelier%2C%20I%20would%20like%20to%20inquire%20about%20this%20jewellery%20piece"
+              target="_blank"
+              class="w-full btn-gold text-xs py-3 flex items-center justify-center gap-2 rounded shadow-sm text-center font-medium"
+            >
+              <span>Inquire on WhatsApp</span>
+            </a>
+            <button id="modal-wishlist-btn" class="w-full text-xs py-2.5 text-stone-700 hover:text-stone-950 border border-stone-200 rounded flex items-center justify-center gap-2 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              <span>Save to Wishlist</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- 12. EMBEDDED JAVASCRIPT FOR COMPLETE WORKING INTERACTIVITY     -->
+  <!-- ============================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Interactive 3D Gift Box (Tap/Click toggle for mobile & keyboard)
+      const boxes = document.querySelectorAll('.jewellery-box-root');
+      boxes.forEach(box => {
+        box.addEventListener('click', function () {
+          const isOpen = this.classList.contains('is-open');
+          boxes.forEach(b => b.classList.remove('is-open'));
+          if (!isOpen) {
+            this.classList.add('is-open');
+          }
+        });
+      });
+
+      // 2. Grid Columns Switcher (3, 4, 6 columns)
+      const gridContainer = document.getElementById('dynamic-product-grid');
+      const btn3 = document.getElementById('col-btn-3');
+      const btn4 = document.getElementById('col-btn-4');
+      const btn6 = document.getElementById('col-btn-6');
+
+      function setActiveColBtn(activeBtn) {
+        [btn3, btn4, btn6].forEach(btn => {
+          btn.classList.remove('text-stone-900', 'bg-stone-100');
+          btn.classList.add('text-stone-400');
+        });
+        activeBtn.classList.remove('text-stone-400');
+        activeBtn.classList.add('text-stone-900', 'bg-stone-100');
+      }
+
+      btn3.addEventListener('click', function () {
+        gridContainer.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 transition-all duration-500 ease-out';
+        setActiveColBtn(btn3);
+      });
+
+      btn4.addEventListener('click', function () {
+        gridContainer.className = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 transition-all duration-500 ease-out';
+        setActiveColBtn(btn4);
+      });
+
+      btn6.addEventListener('click', function () {
+        gridContainer.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-5 transition-all duration-500 ease-out';
+        setActiveColBtn(btn6);
+      });
+
+      // 3. Quick View Modal Interaction
+      const modal = document.getElementById('quick-view-modal');
+      const modalClose = document.getElementById('modal-close-btn');
+      const modalTitle = document.getElementById('modal-title');
+      const modalPrice = document.getElementById('modal-price');
+      const modalImg = document.getElementById('modal-img');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalMetal = document.getElementById('modal-metal');
+      const modalWaBtn = document.getElementById('modal-wa-btn');
+
+      document.querySelectorAll('.quick-view-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          modalTitle.textContent = this.dataset.title;
+          modalPrice.textContent = this.dataset.price;
+          modalImg.src = this.dataset.img;
+          modalImg.alt = this.dataset.title;
+          modalDesc.textContent = this.dataset.desc;
+          modalMetal.innerHTML = this.dataset.metal;
+          modalWaBtn.href = `https://wa.me/919876543210?text=Hello%20Aurum%20Atelier%2C%20I%20am%20interested%20in%20${encodeURIComponent(this.dataset.title)}`;
+
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        });
+      });
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // 4. FAQ Accordion & Category Filter
+      const faqItems = document.querySelectorAll('.faq-item');
+      const filterBtns = document.querySelectorAll('.faq-filter-btn');
+
+      // Accordion toggle
+      faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question-btn');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+
+        questionBtn.addEventListener('click', function () {
+          const isHidden = answer.classList.contains('hidden');
+          if (isHidden) {
+            answer.classList.remove('hidden');
+            icon.classList.add('rotate-180', 'bg-[#7A2E6F]', 'text-white', 'border-[#7A2E6F]');
+            icon.classList.remove('bg-stone-50', 'text-stone-500', 'border-stone-200');
+          } else {
+            answer.classList.add('hidden');
+            icon.classList.remove('rotate-180', 'bg-[#7A2E6F]', 'text-white', 'border-[#7A2E6F]');
+            icon.classList.add('bg-stone-50', 'text-stone-500', 'border-stone-200');
+          }
+        });
+      });
+
+      // Category filter buttons
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-[#7A2E6F]', 'text-white', 'border-[#7A2E6F]', 'shadow-xs');
+            b.classList.add('bg-white/80', 'text-stone-600', 'border-stone-200');
+          });
+          this.classList.add('bg-[#7A2E6F]', 'text-white', 'border-[#7A2E6F]', 'shadow-xs');
+          this.classList.remove('bg-white/80', 'text-stone-600', 'border-stone-200');
+
+          const category = this.dataset.filter;
+          faqItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // 5. Wishlist Toggle & Counter
+      let wishlistCount = 2;
+      const wishlistBadge = document.getElementById('wishlist-badge');
+      document.querySelectorAll('.wishlist-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const svg = this.querySelector('svg');
+          const isFilled = svg.getAttribute('fill') === '#7A2E6F';
+          if (isFilled) {
+            svg.setAttribute('fill', 'none');
+            svg.classList.remove('text-[#7A2E6F]');
+            wishlistCount = Math.max(0, wishlistCount - 1);
+          } else {
+            svg.setAttribute('fill', '#7A2E6F');
+            svg.classList.add('text-[#7A2E6F]');
+            wishlistCount += 1;
+          }
+          wishlistBadge.textContent = wishlistCount;
+        });
+      });
+
+      // 6. Newsletter Subscription
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterSuccess = document.getElementById('newsletter-success');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          newsletterForm.classList.add('hidden');
+          newsletterSuccess.classList.remove('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
