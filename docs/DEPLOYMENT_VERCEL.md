@@ -105,6 +105,35 @@ After the first deploy, point the Razorpay webhook at
 
 ---
 
+## 3a. Live state, verified 2026-11-21
+
+Deployed at **https://jewellery-zeta-six.vercel.app** (project `kt-eam3/jewellery`,
+auto-deploying from `main` — a push starts a build within seconds).
+
+| Check | Result |
+| :--- | :--- |
+| `/api/health` | `{"status":"ok","database":"connected"}`, store settings served from the database |
+| Neon | `ep-little-king-a1wjmyjp` (ap-southeast-1), PostgreSQL 18.7, restored from the local dump |
+| Data | all 15 tables match the local database row for row |
+| Schema | `prisma migrate diff` → "No difference detected" |
+| `DATABASE_URL` | Neon **pooled** host (`-pooler`), Production + Preview |
+| Env vars | 12 set across Production + Preview |
+| Imagery | storefront serves 293 Cloudinary URLs, zero Unsplash |
+| Admin login | wrong credentials → 401; the repo's demo password is rejected in production (fail-closed) |
+
+Local `.env` points at the local `jewellery_db`; the hosted database lives in
+`NEON_DATABASE_URL` so a stray `prisma db push` or seed cannot reach production.
+Scripts that must touch Neon take it explicitly:
+
+```bash
+DATABASE_URL="$(grep ^NEON_DATABASE_URL .env | cut -d= -f2- | tr -d '\"')" pnpm admin:create you@chudiwalas.com "Your Name" OWNER
+```
+
+Still outstanding: a real admin user, real Razorpay sandbox keys, and the real
+WhatsApp number (`NEXT_PUBLIC_WHATSAPP_NUMBER` is still the placeholder).
+
+---
+
 ## 4. Known constraints
 
 - **Repo visibility**: the GitHub repo is public and carries
