@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* Brand panel */}
       <div className="hidden lg:flex flex-col justify-between bg-olive-600 text-ivory-100 p-12">
-        <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-ivory.png" alt="Chudiwalas" width={2097} height={225} className="h-6 w-auto" />
+        <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-ivory.png" alt="Chudiwalas" width={2097} height={225} className="h-6 w-auto" />
         <div className="max-w-md">
           <Image src="/brand/crest-ivory.svg" alt="" aria-hidden="true" width={791} height={1080} className="h-16 w-auto opacity-90" />
           <h2 className="mt-6 text-3xl font-semibold leading-tight text-ivory-50">Atelier administration</h2>
@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
       {/* Form */}
       <div className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-sm">
-          <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} className="h-5 w-auto lg:hidden mb-8" />
+          <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} className="h-5 w-auto lg:hidden mb-8" />
           <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-olive-700 font-medium">
             <LockKeyhole className="w-3.5 h-3.5" /> Staff sign in
           </span>

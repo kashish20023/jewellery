@@ -140,7 +140,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <aside className="hidden lg:flex lg:flex-col w-64 shrink-0 bg-olive-600 text-ivory-100 sticky top-0 h-screen">
         <div className="px-5 py-5 border-b border-ivory-100/15">
           <Link href="/admin" className="block">
-            <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-ivory.png" alt="Chudiwalas" width={2097} height={225} className="h-[18px] w-auto" />
+            <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-ivory.png" alt="Chudiwalas" width={2097} height={225} className="h-[18px] w-auto" />
             <span className="block mt-2 text-[10px] uppercase tracking-[0.22em] text-ivory-200/70">Atelier admin</span>
           </Link>
         </div>
@@ -154,7 +154,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <div className="fixed inset-0 bg-charcoal-950/60" onClick={() => setOpen(false)} aria-hidden="true" />
           <div className="relative w-72 max-w-[85vw] bg-olive-600 text-ivory-100 h-full flex flex-col z-10">
             <div className="px-5 py-5 border-b border-ivory-100/15 flex items-center justify-between">
-              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-ivory.png" alt="Chudiwalas" width={2097} height={225} className="h-[16px] w-auto" />
+              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-ivory.png" alt="Chudiwalas" width={2097} height={225} className="h-[16px] w-auto" />
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="p-1 text-ivory-100">
                 <X className="w-5 h-5" />
               </button>
@@ -178,7 +178,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               >
                 <Menu className="w-5 h-5" />
               </button>
-              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} className="lg:hidden h-[14px] w-auto" />
+              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} className="lg:hidden h-[14px] w-auto" />
               <span className="hidden lg:block text-xs uppercase tracking-[0.18em] text-charcoal-500 font-medium">
                 {NAV.find((n) => isActive(n.href, "exact" in n ? (n as { exact?: boolean }).exact : undefined))?.label ?? "Admin"}
               </span>

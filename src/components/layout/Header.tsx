@@ -101,7 +101,7 @@ export function Header() {
             </button>
 
             <Link href="/" aria-label="Chudiwalas, home" className="shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive-600">
-              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} priority className="h-[20px] sm:h-[24px] w-auto" />
+              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} priority className="h-[20px] sm:h-[24px] w-auto" />
             </Link>
 
             <div className="hidden lg:block flex-1 max-w-xl mx-auto">{searchForm()}</div>
@@ -145,7 +145,7 @@ export function Header() {
           <div className="fixed inset-0 bg-charcoal-950/50" onClick={() => setOpen(false)} aria-hidden="true" />
           <div className="relative w-full max-w-xs bg-white h-full p-5 flex flex-col overflow-y-auto z-10">
             <div className="flex items-center justify-between pb-4 border-b border-charcoal-100">
-              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} className="h-[18px] w-auto" />
+              <Image src="https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255327/chudiwalas/site/brand/wordmark-black.png" alt="Chudiwalas" width={2097} height={225} className="h-[18px] w-auto" />
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="w-11 h-11 flex items-center justify-center text-charcoal-800">
                 <X className="w-5 h-5" />
               </button>

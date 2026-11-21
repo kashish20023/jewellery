@@ -104,7 +104,7 @@ export function constructOrganizationJsonLd() {
     name: SITE_NAME,
     alternateName: "Chudiwalas Fine Jewellery",
     url: SITE_URL,
-    logo: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255325/chudiwalas/sitehttps://res.cloudinary.com/b3ddq6fp/image/upload/v1795255325/chudiwalas/site/brand/lockup-black.png",
+    logo: "https://res.cloudinary.com/b3ddq6fp/image/upload/v1795255325/chudiwalas/site/brand/lockup-black.png",
     image: DEFAULT_OG_IMAGE,
     description: DEFAULT_DESCRIPTION,
     priceRange: "₹₹₹₹",

@@ -21,6 +21,7 @@
  */
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { cloudinaryConfig, cloudinaryUpload } from "../src/lib/admin/storage";
 
 try {
@@ -128,23 +129,39 @@ function deliveryUrl(secureUrl: string, width?: number): string {
   return secureUrl.replace("/image/upload/", `/image/upload/${transform}/`);
 }
 
-async function rewriteReferences(map: Map<string, string>): Promise<string[]> {
-  const files = (await walk(path.join(ROOT, "src"))).filter((f) => /\.(ts|tsx)$/.test(f));
-  const touched: string[] = [];
-  // `src/lib/seo.ts` builds absolute URLs as `${SITE_URL}/brand/x.png`; a Cloudinary
-  // URL is already absolute, so that prefix has to go with the path it decorated.
+/**
+ * Repoints every reference in one file's text. Exported for the unit tests.
+ *
+ * Two hazards, both of which produced dead doubled URLs before:
+ * - within a run: a Cloudinary target ends in the very path it replaced, so a
+ *   second sequential pass would match inside a URL this run just inserted.
+ *   Hence a single pass, longest source first.
+ * - across runs: "/brand/x.png" also occurs inside the
+ *   "https://res.cloudinary.com/<cloud>/.../site/brand/x.png" an earlier
+ *   migration already wrote. Hence the lookbehind.
+ *
+ * `src/lib/seo.ts` builds absolute URLs as `${SITE_URL}/brand/x.png`; a Cloudinary
+ * URL is already absolute, so that prefix goes with the path it decorated.
+ */
+export function rewriteText(text: string, map: Map<string, string>): string {
+  if (!map.size) return text;
   const expanded = new Map(map);
   for (const [source, target] of map) {
     if (source.startsWith("/")) expanded.set("${SITE_URL}" + source, target);
   }
-  // One pass over the file, longest source first. Sequential replaces would corrupt
-  // the output: a Cloudinary target ends in the very path it replaced, so a later
-  // source would match inside a URL this run just inserted.
   const sources = [...expanded.keys()].sort((a, b) => b.length - a.length);
-  const pattern = new RegExp(sources.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "g");
+  const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const alternation = sources.map(escape).join("|");
+  const pattern = new RegExp("(?<!res\\.cloudinary\\.com[^\"'`\\s]*)(?:" + alternation + ")", "g");
+  return text.replace(pattern, (match) => expanded.get(match) ?? match);
+}
+
+async function rewriteReferences(map: Map<string, string>): Promise<string[]> {
+  const files = (await walk(path.join(ROOT, "src"))).filter((f) => /\.(ts|tsx)$/.test(f));
+  const touched: string[] = [];
   for (const file of files) {
     const before = await fs.readFile(file, "utf8");
-    const after = before.replace(pattern, (match) => expanded.get(match) ?? match);
+    const after = rewriteText(before, map);
     if (after !== before) {
       await fs.writeFile(file, after);
       touched.push(path.relative(ROOT, file));
@@ -248,7 +265,13 @@ async function main() {
   if (failed) process.exit(1);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// Importing this module (the unit tests do, for rewriteText) must not start a
+// migration, so main() runs only when this file is the entry point.
+const executedDirectly = process.argv[1] ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url) : false;
+
+if (executedDirectly) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
