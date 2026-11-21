@@ -12,9 +12,10 @@
  *   - every remote catalogue image referenced by src/lib/fixtures/*.ts, fetched
  *     by Cloudinary directly from its URL
  *
- * What --rewrite touches: product and catalogue imagery only. Brand marks and the
- * damask tile are uploaded as CDN copies but keep their local /public references,
- * so the page shell never depends on an external host or a free-tier quota.
+ * What --rewrite touches: every raster image (products, catalogue, brand PNGs, the
+ * damask tile). SVG crests are uploaded as CDN copies but keep their local
+ * references: next/image refuses remote SVG unless `dangerouslyAllowSVG` is on, and
+ * some Cloudinary accounts restrict SVG delivery outright.
  *
  * Re-running is safe: public IDs are deterministic and uploads overwrite in place.
  */
@@ -89,7 +90,7 @@ async function collectLocal(folder: string): Promise<Target[]> {
         source,
         kind: "local" as const,
         publicId: toPublicId(folder, ["site", ...rel.split(path.sep)]),
-        rewritable: source.startsWith("/products/"),
+        rewritable: path.extname(source).toLowerCase() !== ".svg",
       };
     })
     .sort((a, b) => a.source.localeCompare(b.source));
@@ -128,8 +129,14 @@ function deliveryUrl(secureUrl: string, width?: number): string {
 async function rewriteReferences(map: Map<string, string>): Promise<string[]> {
   const files = (await walk(path.join(ROOT, "src"))).filter((f) => /\.(ts|tsx)$/.test(f));
   const touched: string[] = [];
+  // `src/lib/seo.ts` builds absolute URLs as `${SITE_URL}/brand/x.png`; a Cloudinary
+  // URL is already absolute, so that prefix has to go with the path it decorated.
+  const expanded = new Map(map);
+  for (const [source, target] of map) {
+    if (source.startsWith("/")) expanded.set("${SITE_URL}" + source, target);
+  }
   // Longest source first, so a URL is never half-replaced by a shorter prefix.
-  const pairs = [...map.entries()].sort((a, b) => b[0].length - a[0].length);
+  const pairs = [...expanded.entries()].sort((a, b) => b[0].length - a[0].length);
   for (const file of files) {
     const before = await fs.readFile(file, "utf8");
     let after = before;
@@ -166,13 +173,17 @@ async function main() {
   const manifest: Array<Record<string, unknown>> = [];
   const rewriteMap = new Map<string, string>();
   let failed = 0;
+  let permissionDenied = false;
 
   for (const t of targets) {
     try {
       const file = t.kind === "local" ? await fs.readFile(path.join(PUBLIC_DIR, t.source.replace(/^\//, ""))) : t.source;
       const contentType = t.kind === "local" ? CONTENT_TYPES[path.extname(t.source).toLowerCase()] : undefined;
       const result = await cloudinaryUpload({ file, publicId: t.publicId, contentType, overwrite: true, config });
-      const url = deliveryUrl(result.url, t.width);
+      // Remote catalogue art keeps its requested width as a transformation. Local
+      // assets stay untransformed: one is a Tailwind arbitrary `bg-[url(...)]`
+      // value, where the commas of `f_auto,q_auto` would break class parsing.
+      const url = t.kind === "remote" ? deliveryUrl(result.url, t.width) : result.url;
       manifest.push({
         source: t.source,
         kind: t.kind,
@@ -188,13 +199,27 @@ async function main() {
       console.log(`  ok   ${t.source}  ->  ${url}`);
     } catch (error) {
       failed += 1;
-      console.error(`  FAIL ${t.source}: ${(error as Error).message}`);
+      const message = (error as Error).message;
+      if (message.includes("(403)")) permissionDenied = true;
+      console.error(`  FAIL ${t.source}: ${message}`);
     }
   }
 
-  await fs.mkdir(path.dirname(MANIFEST), { recursive: true });
-  await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + "\n");
-  console.log(`\n${manifest.length} uploaded, ${failed} failed. Manifest: ${path.relative(ROOT, MANIFEST)}`);
+  if (manifest.length) {
+    await fs.mkdir(path.dirname(MANIFEST), { recursive: true });
+    await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + "\n");
+  }
+  console.log(`\n${manifest.length} uploaded, ${failed} failed.${manifest.length ? ` Manifest: ${path.relative(ROOT, MANIFEST)}` : ""}`);
+
+  if (!manifest.length && permissionDenied) {
+    console.error(
+      "\nEvery upload was refused with 403 (missing permissions). The credentials are\n" +
+        "valid but the API key has no write role: Cloudinary creates new keys with no\n" +
+        "permissions at all. In Console Settings > API Keys, give this key the Master\n" +
+        "Admin (or Media Library User) role, or use the product environment root key,\n" +
+        "then re-run. A read-only key can list assets but cannot create them."
+    );
+  }
 
   if (REWRITE && rewriteMap.size) {
     const touched = await rewriteReferences(rewriteMap);
