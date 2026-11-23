@@ -6,6 +6,12 @@ import { Header } from "@/components/layout/Header";
 import { ZoomModal } from "@/components/product/ZoomModal";
 import { WishlistProvider } from "@/components/wishlist/WishlistContext";
 import { CartProvider } from "@/components/cart/CartContext";
+import { CATEGORIES } from "@/lib/categories";
+
+// The navbar's two menus are data-driven; these stand in for the live data.
+const NAV_COLLECTIONS = [
+  { slug: "bridal-connoisseur", title: "Bridal Connoisseur", bannerImageUrl: null },
+];
 
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
@@ -19,7 +25,7 @@ describe("Accessibility & Ergonomics AA Compliance (S26 / PRD-F17)", () => {
     render(
       <WishlistProvider>
         <CartProvider>
-          <Header />
+          <Header categories={CATEGORIES} collections={NAV_COLLECTIONS} />
         </CartProvider>
       </WishlistProvider>
     );
@@ -74,7 +80,7 @@ describe("Accessibility & Ergonomics AA Compliance (S26 / PRD-F17)", () => {
     render(
       <WishlistProvider>
         <CartProvider>
-          <Header />
+          <Header categories={CATEGORIES} collections={NAV_COLLECTIONS} />
         </CartProvider>
       </WishlistProvider>
     );

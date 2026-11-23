@@ -1,9 +1,10 @@
 # PROJECT_STATE.md — Current Project Status & Baseline Report
 
-**Last Updated**: 2026-11-21T13:30:00+05:30  
+**Last Updated**: 2026-11-23T13:00:00+05:30  
 **Current Phase**: Phase 6 (COMPLETE) + Brand Re-skin to Chudiwalas guidelines (2026-11-19, COMPLETE) + Homepage v2 editorial redesign + Poppins-only typography + Admin portal re-theme + Polki-Stories feature parity (variants by colour/purity, offers, price breakup, /shop) + master-prompt pass (variant URL, per-variant filters, mobile filter sheet, admin queues, order detail, photography/collections editor, test isolation) + photography upload (object storage or local fallback) + Add product form with variant/product archive + Palmonas-style redesign steps 1-4 complete, plus About page, checkout step indicator and light-background product photography across all fixtures (white canvas throughout; 201/201 tests) (2026-11-20, COMPLETE, uncommitted)  
 **Active Worktree**: `/Users/ideaind/Desktop/premium-jewellery` (branch: `main`)  
 **Git Head**: Uncommitted working tree (brand re-skin pending commit)  
+**Latest change (2026-11-23)**: Owner-managed collections — `/admin/collections` CRUD, inline collection creation inside the product editor, and a data-driven navbar whose **Category** menu comes from the category registry and **Collections** menu from the database (`Collection.showInNav`, cache tag `nav-collections`). typecheck 0 errors, lint clean, build 40 routes, vitest 220 passed / 5 skipped (7/7 with `TEST_DATABASE_URL`). **Deploy note:** the production database still needs `prisma db push` for the new `Collection.showInNav` column.  
 
 ---
 

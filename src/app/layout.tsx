@@ -7,6 +7,7 @@ import { WishlistProvider } from "@/components/wishlist/WishlistContext";
 import { CartProvider } from "@/components/cart/CartContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { constructMetadata, constructOrganizationJsonLd } from "@/lib/seo";
+import { getNavigation } from "@/lib/navigation";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -24,12 +25,15 @@ const poppins = Poppins({
 
 export const metadata: Metadata = constructMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const orgJsonLd = constructOrganizationJsonLd();
+  // Navbar menus are data-driven: categories from the registry, collections
+  // from the admin portal. Fetched here so every page shares one query.
+  const { categories, collections } = await getNavigation();
 
   return (
     <html lang="en" className={poppins.variable}>
@@ -41,7 +45,7 @@ export default function RootLayout({
         <WishlistProvider>
           <CartProvider>
             <ChromeGate>
-              <Header />
+              <Header categories={categories} collections={collections} />
             </ChromeGate>
             <main id="main-content" tabIndex={-1} className="flex-grow focus:outline-none relative">
               {children}

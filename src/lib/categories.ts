@@ -58,7 +58,24 @@ export const CATEGORIES: CategoryDefinition[] = [
       "Tennis lines, kadas and chain bracelets, built to sit flat and close without catching.",
     bannerImageUrl: U("1573408301185-9146fe634ad0"),
   },
+  {
+    slug: "bangles",
+    label: "Bangles & chudiyan",
+    description:
+      "Kadas, openable bangles and chudi sets in hallmarked gold, sized on the wrist before they leave the bench.",
+    bannerImageUrl: U("1512163143273-bde0e3cc7407"),
+  },
+  {
+    slug: "mangalsutra",
+    label: "Mangalsutra",
+    description:
+      "Contemporary and traditional mangalsutra, strung on black beads or a gold chain, with certified diamond or polki centres.",
+    bannerImageUrl: U("1605100804763-247f67b3557e"),
+  },
 ];
+
+/** The slugs the admin product form offers, in navbar order. */
+export const CATEGORY_SLUGS: string[] = CATEGORIES.map((c) => c.slug);
 
 /** Returns the category definition for a slug, or null for unknown / "all". */
 export function getCategory(slug?: string | null): CategoryDefinition | null {

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { formatPaiseToInr } from "@/lib/money";
 import { PageHeader, Card, StatusBadge, EmptyState, Loading, Alert } from "@/components/admin/ui";
+import { CATEGORIES as CATEGORY_DEFS } from "@/lib/categories";
+import { slugify } from "@/lib/utils";
 import { Plus, X, Search, Upload, ExternalLink, ArrowUp, ArrowDown, Trash2, Eye, ImagePlus, RefreshCcw, Archive } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -100,8 +102,11 @@ interface VariantForm {
 }
 
 interface CollectionOpt {
+  id: string;
   slug: string;
   title: string;
+  showInNav?: boolean;
+  isArchived?: boolean;
 }
 
 interface StorageInfo {
@@ -119,21 +124,12 @@ interface UploadJob {
   url?: string;
 }
 
-const CATEGORIES = ["chokers", "necklaces", "earrings", "rings", "bracelets", "bangles", "mangalsutra"];
+const CATEGORIES = CATEGORY_DEFS.map((c) => c.slug);
 const COLOURS = ["Yellow Gold", "Rose Gold", "White Gold", "Platinum"];
 const PURITIES = ["375 / 9K", "585 / 14K", "750 / 18K", "916 / 22K", "Pt 950"];
 const NEW_ID = "__new__";
 
 const inr = (paise?: string | null) => (paise ? (Number(BigInt(paise)) / 100).toString() : "");
-
-function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .replace(/&/g, " and ")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 80);
-}
 
 function toForm(v: Variant): VariantForm {
   return {
@@ -255,6 +251,9 @@ function ProductsPageInner() {
   const [original, setOriginal] = useState<VariantForm[]>([]);
   const [media, setMedia] = useState<Media[]>([]);
   const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
+  const [newCollectionTitle, setNewCollectionTitle] = useState("");
+  const [creatingCollection, setCreatingCollection] = useState(false);
+  const [collectionError, setCollectionError] = useState<string | null>(null);
   const [newMediaUrl, setNewMediaUrl] = useState("");
   const [storage, setStorage] = useState<StorageInfo | null>(null);
   const [jobs, setJobs] = useState<UploadJob[]>([]);
@@ -287,6 +286,41 @@ function ProductsPageInner() {
   useEffect(() => {
     load();
   }, []);
+
+  /**
+   * Creates a collection from the product editor and tags this product to it,
+   * so a new group can be started without leaving the piece being edited.
+   * The slug, ordering and navbar flag match the Collections page defaults.
+   */
+  const createCollection = async () => {
+    const title = newCollectionTitle.trim();
+    if (!title) return;
+    setCreatingCollection(true);
+    setCollectionError(null);
+    try {
+      const res = await fetch("/api/admin/collections", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, slug: slugify(title) || null, showInNav: true }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Could not create the collection.");
+      const created: CollectionOpt = {
+        id: data.collection.id,
+        slug: data.collection.slug,
+        title: data.collection.title,
+        showInNav: data.collection.showInNav,
+        isArchived: false,
+      };
+      setCollections((prev) => [...prev, created]);
+      setSelectedCollections((prev) => (prev.includes(created.slug) ? prev : [...prev, created.slug]));
+      setNewCollectionTitle("");
+    } catch (err) {
+      setCollectionError((err as Error).message);
+    } finally {
+      setCreatingCollection(false);
+    }
+  };
 
   const flash = (tone: "success" | "error", text: string) => {
     setMsg({ tone, text });
@@ -913,15 +947,47 @@ function ProductsPageInner() {
               {editorTab === "merch" && (
                 <div className="space-y-6 max-w-xl">
                   <div>
-                    <p className="adm-label">Collections</p>
+                    <div className="flex items-baseline justify-between gap-3">
+                      <p className="adm-label">Collections</p>
+                      <Link href="/admin/collections" className="text-[11px] font-medium text-olive-700 hover:underline">Manage collections</Link>
+                    </div>
+                    <p className="text-[11px] text-charcoal-500 mb-2">Tick every collection this piece belongs to. Each one has its own page and sits in the storefront navbar under “Collections”.</p>
                     <div className="space-y-2">
-                      {collections.map((c) => (
+                      {collections.filter((c) => !c.isArchived).map((c) => (
                         <label key={c.slug} className="flex items-center gap-3 text-sm text-charcoal-800 min-h-[36px]">
                           <input type="checkbox" className="accent-[#556B2F]" checked={selectedCollections.includes(c.slug)} onChange={(e) => setSelectedCollections((prev) => (e.target.checked ? [...prev, c.slug] : prev.filter((s) => s !== c.slug)))} />
                           {c.title} <span className="text-xs text-charcoal-500">/collections/{c.slug}</span>
+                          {c.showInNav === false && <span className="text-[10px] text-charcoal-400">(not in navbar)</span>}
                         </label>
                       ))}
-                      {collections.length === 0 && <p className="text-xs text-charcoal-500">No collections available.</p>}
+                      {collections.filter((c) => !c.isArchived).length === 0 && <p className="text-xs text-charcoal-500">No collections yet. Create the first one below.</p>}
+                    </div>
+
+                    {/* Start a new collection without leaving the product */}
+                    <div className="mt-3 pt-3 border-t border-ivory-400">
+                      <label className="adm-label" htmlFor="new-collection">New collection</label>
+                      <div className="flex gap-2">
+                        <input
+                          id="new-collection"
+                          className="adm-input"
+                          value={newCollectionTitle}
+                          onChange={(e) => setNewCollectionTitle(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              createCollection();
+                            }
+                          }}
+                          placeholder="e.g. Wedding Polki Suites"
+                        />
+                        <button type="button" onClick={createCollection} disabled={creatingCollection || !newCollectionTitle.trim()} className="adm-btn-ghost shrink-0">
+                          <Plus className="w-3.5 h-3.5" /> {creatingCollection ? "Creating…" : "Create & tag"}
+                        </button>
+                      </div>
+                      <p className="text-[11px] text-charcoal-500 mt-1">
+                        Creates /collections/{slugify(newCollectionTitle) || "…"}, ticks it for this product and adds it to the navbar. Edit its banner and order on the Collections page.
+                      </p>
+                      {collectionError && <p className="text-[11px] text-red-700 mt-1">{collectionError}</p>}
                     </div>
                   </div>
                   <div className="border-t border-ivory-400 pt-4 space-y-3">

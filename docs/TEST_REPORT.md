@@ -490,3 +490,25 @@ Collection and category listings now open with a banner carrying the name, stand
 **Evidence.** typecheck 0 errors; lint clean; vitest 201/201; Playwright e2e **49/49 PASS**, including four new scenarios: collection banner renders name + image + count; category page shows its own banner and name; **each of the five categories resolves a distinct banner photograph** (guards against silent reuse); unknown category falls back gracefully. Horizontal-overflow checks extended to `/shop?category=rings`, `/collections` and `/collections/[slug]`.
 
 **Still placeholder.** Category banner photographs are stock and only approximately on-subject (the chokers banner is a pendant shot). They are wired to a single registry, so swapping in real atelier photography is a one-file change.
+
+---
+
+### 1.19 Admin-managed collections + data-driven navbar (2026-11-23)
+
+**Owner request.** Tag a product to any collection from the dashboard; create collections from the dashboard; show those collections in the navbar under a **Collections** label and every category under a **Category** label, laid out the way current Indian fine-jewellery storefronts do.
+
+**Added**
+- `Collection.showInNav` (Boolean, default `true`) — pushed with `prisma db push`. A collection can stay live at `/collections/<slug>` while being kept out of the navbar menu.
+- `src/lib/navigation.ts` — `queryNavCollections()` (uncached, exported for tests) and `getNavCollections` wrapped in `unstable_cache` under the tag `nav-collections`. The root layout renders the navbar on every page, so an uncached query there would have made the whole storefront dynamic; writes bust the tag instead. Fixtures are the fallback **only** when the database is unreachable — an owner who unticks every collection gets an empty menu, not the fixtures.
+- `src/lib/admin/revalidate.ts` — `revalidateCollectionSurfaces()`: busts the nav tag and revalidates `/collections`, `/collections/[slug]` and `/shop` on every collection write.
+- `POST /api/admin/collections`, `PATCH`/`DELETE /api/admin/collections/[id]` — MANAGER+ only, slug derived from the title, 409 on a slug clash (naming the archived holder when that is the cause), every change audited.
+- `/admin/collections` — create form (title, slug, description, banner URL or upload, order, "Show in navbar") and an inline editor per collection with product count, archive/restore and delete. Banner uploads reuse the product media endpoint under a `collection-<slug>` key.
+- Product editor, "Collections & flags": a **New collection** row that creates the collection, ticks it for the piece being edited and adds it to the navbar without leaving the product. Archived collections are no longer offered as tags.
+- Navbar: `All jewellery · Category ▾ · Collections ▾ · New in · Ready to ship · Consultation · Our story`. Both menus are full-width photographic dropdowns (hover and click, Escape and tab-out close, one open at a time); the mobile drawer carries the same two as accordions. Menu tiles are `aria-hidden` so each link's accessible name is its caption alone.
+- `src/lib/categories.ts` gained `bangles` and `mangalsutra` and is now the single source for the admin category select, the navbar Category menu and the listing banners — the admin form previously offered two categories the storefront had no banner for.
+
+**Evidence.** `tsc --noEmit` 0 errors; `next lint` clean; `next build` compiled all 40 routes with `/collections`, `/faqs`, `/cart` and the rest still prerendered (the cache tag keeps the layout static); vitest **220 passed / 5 skipped**, including 6 new navbar tests (`tests/unit/header-nav.test.tsx`). `tests/integration/admin-collections.test.ts` is DB-gated — 2 access-control tests always run, and all **7 pass** against a live Postgres via `TEST_DATABASE_URL`.
+
+End-to-end against `next dev` and the dev database: `POST /api/admin/collections` as MANAGER → 201 with the derived slug; the new collection reached the navbar props on an unrelated page (`/faqs`) immediately, proving the tag revalidation; `PATCH /api/admin/products/<id>` with `collectionSlugs` → `/collections/<slug>` listed the piece and reported "1 piece"; `DELETE` removed it and the product tags. Verification rows were deleted afterwards; the four seeded collections are unchanged.
+
+**Note for deploy.** `prisma db push` has been run against the local database only. The production database needs the same push (or a migration) before this ships, otherwise every collection read fails on the missing `showInNav` column.

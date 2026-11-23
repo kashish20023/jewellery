@@ -168,6 +168,7 @@ model Collection {
   description    String?
   bannerImageUrl String?
   displayOrder   Int                 @default(0)
+  showInNav      Boolean             @default(true) // Listed in the storefront navbar's Collections menu
   isArchived     Boolean             @default(false)
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt

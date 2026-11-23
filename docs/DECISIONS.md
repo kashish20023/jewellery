@@ -80,6 +80,20 @@ These decisions are derived directly from the Master Prompt and approved PRD:
 
 ---
 
+### 2.1 Merchandising taxonomy — collections vs categories (2026-11-23)
+
+Two separate axes, decided with the owner:
+
+| Axis | Source of truth | Who edits it | Where it appears |
+| :--- | :--- | :--- | :--- |
+| **Category** — what the piece *is* (choker, ring, mangalsutra) | `src/lib/categories.ts` registry; one slug per product (`Product.category`) | Developer (needs a banner photograph and standfirst per entry) | Navbar **Category** menu, `/shop?category=<slug>` banner, admin category select — all read the one registry so they cannot drift |
+| **Collection** — how it is *merchandised* (bridal, festive, polki heritage) | `Collection` table; many per product (`ProductCollection`) | Owner, from `/admin/collections` or inline in the product editor | Navbar **Collections** menu, `/collections`, `/collections/<slug>` |
+
+- A collection created in the dashboard reaches the navbar with no code change. `Collection.showInNav` (default `true`) keeps one live but out of the menu; `displayOrder` sets the order in both the menu and the index.
+- The navbar's collection list is cached under the tag `nav-collections` because the root layout renders it on every page; every collection write busts that tag, so the storefront's static pages stay static.
+- Collections are deliberately **not** hardcoded into the header any more. The previous navbar hardcoded one collection link (`/collections/bridal-connoisseur`) and eight category links; both are now generated.
+- Deleting a collection removes its product tags only — never the products. Archiving is offered as the reversible option.
+
 ## 3. Explicitly Excluded Scope
 
 The following features are **strictly out of scope** for this release unless authorized via formal change request:

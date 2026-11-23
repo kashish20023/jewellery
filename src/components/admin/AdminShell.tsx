@@ -12,6 +12,7 @@ import {
   MessageSquare,
   Settings,
   Tag,
+  Layers,
   ExternalLink,
   LogOut,
   Menu,
@@ -29,6 +30,7 @@ interface AdminUser {
 const NAV_MAIN = [
   { label: "Home", href: "/admin", icon: LayoutDashboard, exact: true },
   { label: "Products", href: "/admin/products", icon: Gem, exact: true },
+  { label: "Collections", href: "/admin/collections", icon: Layers },
   { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
   { label: "Enquiries", href: "/admin/leads", icon: MessageSquare },
 ];
